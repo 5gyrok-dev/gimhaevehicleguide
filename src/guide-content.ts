@@ -25,13 +25,13 @@ export type CopyKey = keyof typeof copy.ko;
 
 // Only fields highlighted pink in the supplied examples are translated here.
 export const fieldLabels = {
-  name: ['성명(명칭)', 'Name', '姓名（名称）', 'Họ tên (tên)', 'Ism (nomi)'],
+  name: ['성명(명칭)', 'Name', '姓名', 'Họ tên', 'Ism'],
   id: ['주민등록번호(법인등록번호)', 'Registration No.', '登记号码', 'Số đăng ký cư trú', 'Ro‘yxat raqami'],
   base: ['사용 본거지(차고지)', 'Address', '地址', 'Địa chỉ', 'Manzil'],
   corpId: ['주민(법인)등록번호', 'Registration No.', '登记号码', 'Số đăng ký', 'Ro‘yxat raqami'],
   plate: ['자동차등록번호', 'Vehicle Registration Number', '车辆登记号码', 'Số đăng ký xe', 'Avtomobil ro‘yxat raqami'],
   mileage: ['주행거리', 'Mileage', '行驶里程', 'Số km đã đi', 'Bosib o‘tilgan masofa'],
-  applicant: ['신청인 성명', 'Applicant Name', '申请人姓名', 'Họ tên người nộp đơn', 'Arizachi ismi'],
+  applicant: ['신청인 성명', 'Applicant Name', '申请人姓名', 'Người nộp đơn', 'Arizachi ismi'],
   sign: ['(서명 또는 인)', 'Sign/Seal', '签名/盖章', 'Ký/đóng dấu', 'Imzo/muhr'],
   birth: ['생년월일', 'Date of Birth', '出生日期', 'Ngày sinh', 'Tug‘ilgan sana'],
   seller: ['양도인', 'Seller', '转让人（卖方）', 'Người chuyển nhượng (người bán)', 'Sotuvchi'],
@@ -61,7 +61,7 @@ export const documentFields: Record<DocumentKey, FieldMarker[]> = {
   transferForm: [
     { f: 'name', x: 254, y: 239 }, { f: 'id', x: 602, y: 239, a: 'l' }, { f: 'base', x: 312, y: 298 },
     { f: 'name', x: 250, y: 360 }, { f: 'id', x: 683, y: 360 }, { f: 'base', x: 316, y: 425 },
-    { f: 'plate', x: 207, y: 556 }, { f: 'mileage', x: 407, y: 556 },
+    { f: 'plate', x: 96, y: 577 }, { f: 'mileage', x: 407, y: 556 },
     { f: 'applicant', x: 342, y: 815, a: 'l' }, { f: 'sign', x: 747, y: 830, a: 'l' }, { f: 'birth', x: 397, y: 861, a: 'l' },
   ],
   certificate: [
