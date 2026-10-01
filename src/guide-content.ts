@@ -72,7 +72,7 @@ export const documentFields: Record<DocumentKey, FieldMarker[]> = {
   ],
   power: [
     { f: 'delegator', x: 96, y: 296 }, { f: 'simpleName', x: 211, y: 212 }, { f: 'birth', x: 630, y: 212 }, { f: 'address', x: 211, y: 273 }, { f: 'phone', x: 630, y: 273 },
-    { f: 'delegate', x: 96, y: 454 }, { f: 'simpleName', x: 211, y: 340 }, { f: 'birth', x: 630, y: 340 }, { f: 'phone', x: 630, y: 401 }, { f: 'address', x: 211, y: 462 },
+    { f: 'delegate', x: 96, y: 492 }, { f: 'simpleName', x: 211, y: 340 }, { f: 'birth', x: 630, y: 340 }, { f: 'phone', x: 630, y: 401 }, { f: 'address', x: 211, y: 462 },
     { f: 'delegator', x: 352, y: 899, a: 'l' }, { f: 'sign', x: 679, y: 878 },
   ],
   numberForm: [
