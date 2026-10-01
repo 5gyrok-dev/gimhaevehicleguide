@@ -1,3 +1,3 @@
 - [x] Connect the four supplied character images and four original PDF examples.
-- [ ] Build the five-language guided flow and highlighted-field translations.
-- [ ] Verify transfer branches, number change, mobile viewing, and file links.
+- [x] Build the five-language guided flow and highlighted-field translations.
+- [x] Verify transfer branches, number change, mobile viewing, and file links.
