@@ -52,7 +52,7 @@ function Guide() {
   const drag = useRef<{ x: number; y: number; startX: number; startY: number } | null>(null);
   const c = t(language);
   const selectedDocs: DocumentKey[] = service === 'number' ? ['numberForm'] : visitor === 'seller' ? ['transferForm', 'certificate', 'power'] : ['transferForm', 'certificate'];
-  const currentDoc = selectedDocs[docIndex] ?? selectedDocs[0];
+  const currentDoc: DocumentKey = selectedDocs[docIndex] ?? 'transferForm';
   const sequence: Step[] = service === 'number' ? ['start', 'language', 'service', 'example', 'write', 'finish'] : ['start', 'language', 'service', 'visitor', ...(visitor && visitor !== 'together' ? ['preparation' as Step] : []), 'insurance', ...(insurance === false ? ['insuranceNote' as Step] : []), 'example', 'write', 'finish'];
   const progress = Math.max(1, sequence.indexOf(step) + 1);
 
