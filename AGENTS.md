@@ -8,3 +8,7 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- Keep guide copy and pink-highlighted field translations centralized in `src/guide-content.ts` so each language and document remains consistent.
+- Use the supplied PDF assets unchanged as originals and their rendered first-page previews only for touch zoom; never recreate or modify the official forms.
+- Keep navigation choices in client component state; the guide does not collect or persist personal information.
