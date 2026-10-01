@@ -37,7 +37,7 @@ const docs: Record<DocumentKey, { preview: string }> = {
 function FormWithLabels({ doc, language, alt, onDoubleClick }: { doc: DocumentKey; language: Language; alt: string; onDoubleClick?: () => void }) {
   return <div className="relative w-full select-none" onDoubleClick={onDoubleClick}>
     <img src={docs[doc].preview} alt={alt} draggable={false} className="block h-auto w-full" />
-    {language !== 'ko' && documentFields[doc].map((m, i) => <span key={i} className="pointer-events-none absolute whitespace-nowrap rounded-[3px] bg-primary px-[0.35em] py-[0.05em] text-[clamp(8px,2.15cqw,15px)] font-bold leading-tight text-primary-foreground shadow-sm" style={{ top: `${m.y / previewSize.h * 100}%`, ...(m.a === 'l' ? { right: `${100 - m.x / previewSize.w * 100}%` } : { left: `${m.x / previewSize.w * 100}%` }) }}>{fieldText(m.f, language)}</span>)}
+    {language !== 'ko' && documentFields[doc].map((m, i) => <span key={i} className="pointer-events-none absolute whitespace-nowrap rounded-[3px] bg-primary px-[0.35em] py-[0.05em] text-[clamp(7px,1.8cqw,14px)] font-bold leading-tight text-primary-foreground shadow-sm" style={{ top: `${m.y / previewSize.h * 100}%`, ...(m.a === 'l' ? { right: `${100 - m.x / previewSize.w * 100}%` } : { left: `${m.x / previewSize.w * 100}%` }) }}>{fieldText(m.f, language)}</span>)}
   </div>;
 }
 
