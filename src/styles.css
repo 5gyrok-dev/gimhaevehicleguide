@@ -44,6 +44,7 @@
   --ring: oklch(0.54 0.16 253);
   --surface: oklch(0.967 0.016 243);
   --highlight: oklch(0.94 0.045 5);
+  --shadow-app: oklch(0.23 0.035 255 / 0.06);
 }
 @layer base {
   * { border-color: var(--color-border); }
