@@ -51,7 +51,7 @@ export const fieldLabels = {
   mobile: ['(휴대)전화번호', '(Mobile) Phone Number', '（手机）电话号码', 'Số điện thoại (di động)', '(Mobil) telefon raqami'],
 } as const;
 export type FieldKey = keyof typeof fieldLabels;
-export const fieldText = (field: FieldKey, lang: Language) => fieldLabels[field][languages.indexOf(lang)];
+export const fieldText = (field: FieldKey, lang: Language) => fieldLabels[field]?.[languages.indexOf(lang)] ?? fieldLabels[field]?.[0] ?? '';
 
 export type DocumentKey = 'transferForm' | 'certificate' | 'power' | 'numberForm';
 /** Pink field markers on the 920x1300 preview images. x/y = pixel anchor; a = 'r' chip starts at x, 'l' chip ends at x. */
