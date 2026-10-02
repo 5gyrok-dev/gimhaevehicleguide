@@ -116,7 +116,7 @@ function Guide() {
           <div className="mt-6 space-y-2 rounded-2xl border border-gold/60 bg-cream px-5 py-4">{[c.roleSeller, c.roleBuyer].map(r => <p key={r} className="text-lg font-bold leading-snug text-foreground">{r}</p>)}</div>
         </>}
         {step === 'preparation' && <>
-          <p className="mb-2 text-xs font-bold uppercase text-primary">03 · PREPARATION</p><h1 className="text-[1.75rem] font-extrabold leading-snug">{visitor === 'seller' ? c.sellerNeed : c.buyerNeed}</h1>
+          <p className="mb-2 text-xs font-bold uppercase text-primary">03 · PREPARATION</p><h1 className="whitespace-pre-line text-[1.3rem] font-extrabold leading-snug sm:text-[1.75rem]">{visitor === 'seller' ? c.sellerNeed : c.buyerNeed}</h1>
           {visitor === 'buyer' && <p className="mt-3 text-base font-medium text-muted-foreground">{c.buyerNeedNote}</p>}
           <div className="mt-8 rounded-2xl border border-gold/50 bg-cream px-5 py-5"><p className="mb-3 text-lg font-bold">{c.docsTitle}</p><ol className="list-inside list-decimal space-y-2 text-lg font-semibold leading-snug"><li>{c.transferForm}</li><li>{c.certificate}</li></ol></div>
           <div className="mt-auto pt-12"><Primary onClick={() => go('insurance')}>{c.understood}</Primary></div>
