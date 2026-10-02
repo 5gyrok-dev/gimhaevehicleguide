@@ -119,7 +119,7 @@ function Guide() {
           <div className="mt-auto flex justify-center pt-8"><img src={startImage.url} alt="" aria-hidden="true" className="guide-enter h-32 w-auto object-contain" /></div>
         </>}
         {step === 'preparation' && <>
-          <p className="mb-2 text-xs font-bold uppercase text-primary">03 · PREPARATION</p><h1 className={visitor === 'seller' ? 'whitespace-pre-line text-[1.6rem] font-extrabold leading-snug sm:text-[1.9rem]' : '-mx-3 whitespace-pre-line text-[clamp(1.1rem,4.8vw,1.9rem)] font-extrabold leading-snug sm:mx-0'}>{visitor === 'seller' ? c.sellerNeed : c.buyerNeed}</h1>
+          <p className="mb-2 text-xs font-bold uppercase text-primary">03 · PREPARATION</p><h1 className="mb-7 whitespace-pre-line text-[1.6rem] font-extrabold leading-snug sm:text-[1.9rem]">{visitor === 'seller' ? c.sellerNeed : c.buyerNeed}</h1>
           {visitor === 'buyer' && <p className="mt-3 text-base font-medium text-muted-foreground">{c.buyerNeedNote}</p>}
           <div className="mt-8 rounded-2xl border border-primary/30 bg-cream px-5 py-5"><p className="mb-3 text-lg font-bold">{c.docsTitle}</p><ol className="list-inside list-decimal space-y-2 text-lg font-semibold leading-snug"><li>{c.transferForm}</li><li>{c.certificate}</li></ol></div>
           <div className="mt-auto flex justify-center pt-8"><img src={applicationImage.url} alt="" aria-hidden="true" className="guide-enter h-32 w-auto object-contain" /></div>
