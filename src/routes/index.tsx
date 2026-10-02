@@ -113,7 +113,7 @@ function Guide() {
         {step === 'visitor' && <>
           <p className="mb-2 text-xs font-bold uppercase text-primary">02 · VISIT</p><h1 className="mb-7 text-[1.9rem] font-extrabold leading-snug">{c.visitor}</h1>
           <div className="space-y-3"><Choice title={c.together} onClick={() => { setVisitor('together'); setDocIndex(0); go('insurance'); }} /><Choice i={1} title={c.seller} onClick={() => { setVisitor('seller'); setDocIndex(0); go('preparation'); }} /><Choice i={2} title={c.buyer} onClick={() => { setVisitor('buyer'); setDocIndex(0); go('preparation'); }} /></div>
-          <div className="mt-6 space-y-2 rounded-2xl border border-gold/60 bg-cream px-5 py-4">{[c.roleSeller, c.roleBuyer].map(r => <p key={r} className="text-lg font-bold leading-snug text-foreground">{r}</p>)}</div>
+          <div className="mt-6 space-y-2 rounded-2xl border border-gold/60 bg-cream px-5 py-4 text-center">{[c.roleSeller, c.roleBuyer].map(r => <p key={r} className="text-lg font-bold leading-snug text-foreground">{r}</p>)}</div>
         </>}
         {step === 'preparation' && <>
           <p className="mb-2 text-xs font-bold uppercase text-primary">03 · PREPARATION</p><h1 className={visitor === 'seller' ? 'whitespace-pre-line text-[1.6rem] font-extrabold leading-snug sm:text-[1.9rem]' : 'whitespace-pre-line text-[clamp(0.8rem,3.9vw,1.6rem)] font-extrabold leading-snug'}>{visitor === 'seller' ? c.sellerNeed : c.buyerNeed}</h1>
