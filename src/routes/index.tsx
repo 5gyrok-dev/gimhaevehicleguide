@@ -151,7 +151,7 @@ function Guide() {
           <p className="mb-2 text-xs font-bold uppercase text-primary">{service === 'number' ? '03' : '06'} · NEXT</p><h1 className="mb-5 text-[1.9rem] font-extrabold leading-snug">{c.finishTitle}</h1>
           <p className="text-xl font-bold leading-snug">{c.finishLead}</p><p className="mt-3 text-base text-muted-foreground">{c.finishNote}</p>
           <div className="my-8 flex flex-1 items-center justify-center"><img src={counterImage.url} alt="창구 직원에게 안내받는 토더기" className="h-auto max-h-64 w-full object-contain" /></div>
-          <Button variant="guide" size="guide" onClick={reset} className="w-full justify-between text-left"><span className="flex items-center gap-2"><RotateCcw aria-hidden="true" />{c.restart}</span></Button>
+          <Button variant="guide" size="guide" onClick={reset} className="w-full justify-center text-center"><span className="flex items-center gap-2"><RotateCcw aria-hidden="true" />{c.restart}</span></Button>
         </>}
       </main>
     </div>
