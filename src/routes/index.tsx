@@ -1,6 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router';
 import { useEffect, useRef, useState } from 'react';
-import { ArrowLeft, ArrowRight, ChevronRight, Coins, Gavel, Receipt, Route, RotateCcw, SquareParking, X, ZoomIn, ZoomOut } from 'lucide-react';
+import { ArrowLeft, ArrowRight, ChevronRight, Coins, Gavel, Receipt, Route as RouteIcon, RotateCcw, SquareParking, X, ZoomIn, ZoomOut } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { documentFields, documentTitle, fieldText, languageNames, languages, previewSize, t, type DocumentKey, type Language } from '@/guide-content';
 import startImage from '@/assets/todugi_start_car_transparent.png.asset.json';
@@ -145,7 +145,7 @@ function Guide() {
           <p className="mb-2 text-xs font-bold uppercase text-primary">04 · CHECK</p><h1 className="text-[1.7rem] font-extrabold leading-snug">{c.checkNoteTitle}</h1>
           <div className="mt-5 space-y-3"><div className="rounded-2xl border border-primary/30 bg-cream px-5 py-4"><p className="flex items-start gap-2 text-lg font-bold leading-snug"><span className="shrink-0 text-primary">①</span><span>{c.checkStep1}</span></p></div><div className="rounded-2xl border border-primary/30 bg-cream px-5 py-4"><p className="flex items-start gap-2 text-lg font-bold leading-snug"><span className="shrink-0 text-primary">②</span><span>{c.checkStep2}</span></p></div></div>
           <p className="mt-3 text-sm font-medium text-muted-foreground">{c.checkHint}</p>
-          <div className="mt-5 rounded-2xl border border-primary/30 bg-cream px-5 py-4"><p className="text-base font-bold">{c.checkListTitle}</p><ul className="mt-2 space-y-1.5">{(c.checkItems as readonly string[]).map((item, idx) => { const icons: typeof Receipt[] = [Receipt, Coins, Gavel, SquareParking, Route]; const Icon = icons[idx] ?? Receipt; return <li key={item} className="flex items-center gap-2 text-base font-semibold leading-snug"><Icon aria-hidden="true" className="h-4 w-4 shrink-0 text-primary" />{item}</li>; })}</ul></div>
+          <div className="mt-5 rounded-2xl border border-primary/30 bg-cream px-5 py-4"><p className="text-base font-bold">{c.checkListTitle}</p><ul className="mt-2 space-y-1.5">{(c.checkItems as readonly string[]).map((item, idx) => { const icons: typeof Receipt[] = [Receipt, Coins, Gavel, SquareParking, RouteIcon]; const Icon = icons[idx] ?? Receipt; return <li key={item} className="flex items-center gap-2 text-base font-semibold leading-snug"><Icon aria-hidden="true" className="h-4 w-4 shrink-0 text-primary" />{item}</li>; })}</ul></div>
           <div className="pt-6"><Primary onClick={() => go('address')}>{c.understood}</Primary></div>
         </>}
         {step === 'address' && <>
