@@ -156,7 +156,7 @@ function Guide() {
           <div className="mt-8"><Primary onClick={() => { if (docIndex < selectedDocs.length - 1) { setDocIndex(i => i + 1); window.scrollTo({ top: 0, behavior: 'instant' }); } else go('finish'); }}>{docIndex < selectedDocs.length - 1 ? c.nextDoc : c.afterWrite}</Primary></div>
         </>}
         {step === 'finish' && <>
-          <p className="mb-2 mt-16 text-xs font-bold uppercase text-primary">{service === 'number' ? '03' : '06'} · FINAL STEP</p><h1 className="mb-5 whitespace-pre-line text-center text-[1.7rem] font-extrabold leading-snug sm:text-[1.9rem]">{c.finishLead}</h1>
+          <p className="mb-2 text-xs font-bold uppercase text-primary">{service === 'number' ? '03' : '06'} · FINAL STEP</p><h1 className="mb-5 mt-16 whitespace-pre-line text-center text-[1.7rem] font-extrabold leading-snug sm:text-[1.9rem]">{c.finishLead}</h1>
           <p className="mt-3 text-center text-base text-muted-foreground">{c.finishNote}</p>
           <div className="my-8 flex items-center justify-center"><img src={counterImage.url} alt="창구 직원에게 안내받는 토더기" className="h-auto max-h-64 w-full object-contain" /></div>
           <Button variant="guide" size="guide" onClick={reset} className="w-full justify-center text-center"><span className="flex items-center gap-2"><RotateCcw aria-hidden="true" />{c.restart}</span></Button>
