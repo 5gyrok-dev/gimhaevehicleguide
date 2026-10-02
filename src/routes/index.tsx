@@ -149,19 +149,19 @@ function Guide() {
           <div className="pt-6"><Primary onClick={() => go('address')}>{c.understood}</Primary></div>
         </>}
         {step === 'address' && <>
-          <p className="mb-2 text-xs font-bold uppercase text-primary">04 · ADDRESS</p><h1 className="mb-8 text-[1.4rem] font-extrabold leading-snug sm:text-[1.9rem]">{c.address}</h1>
+          <p className="mb-2 text-xs font-bold uppercase text-primary">05 · ADDRESS</p><h1 className="mb-8 text-[1.4rem] font-extrabold leading-snug sm:text-[1.9rem]">{c.address}</h1>
           <div className="space-y-3"><Choice title={c.addressYes} onClick={() => { setKnowsAddress(true); setDocIndex(0); go('example'); }} /><Choice i={1} title={c.addressNo} onClick={() => { setKnowsAddress(false); go('addressNote'); }} /></div>
           <div className="mt-auto flex justify-center pt-8"><img src={startImage.url} alt="" aria-hidden="true" className="guide-enter h-32 w-auto -translate-x-[7.5%] object-contain" /></div>
         </>}
         {step === 'addressNote' && <>
-          <p className="mb-2 text-xs font-bold uppercase text-primary">04 · ADDRESS</p><h1 className="text-[1.9rem] font-extrabold leading-snug">{c.addressTitle}</h1>
+          <p className="mb-2 text-xs font-bold uppercase text-primary">05 · ADDRESS</p><h1 className="text-[1.9rem] font-extrabold leading-snug">{c.addressTitle}</h1>
           <p className="mt-5 whitespace-nowrap text-center text-[0.95rem] font-semibold leading-snug">{c.addressBody}</p>
           <p className="mt-4 whitespace-nowrap rounded-xl bg-cream px-3 py-3 text-center text-[0.9rem] font-medium">{c.addressHelp}</p>
           <div className="mt-auto flex justify-center pt-8"><img src={applicationImage.url} alt="" aria-hidden="true" className="guide-enter h-32 w-auto object-contain" /></div>
           <div className="pt-6"><Primary onClick={() => { setDocIndex(0); go('example'); }}>{c.addressDone}</Primary></div>
         </>}
         {step === 'example' && <>
-          <div className="mb-5 flex items-start justify-between gap-3"><div><p className="mb-2 text-xs font-bold uppercase text-primary">{service === 'number' ? '02' : '05'} · FORMS</p><h1 className="text-[1.8rem] font-extrabold leading-snug">{c.examples}</h1></div><img src={applicationImage.url} alt="신청서를 들고 안내하는 토더기" className="h-16 w-20 shrink-0 object-contain" /></div>
+          <div className="mb-5 flex items-start justify-between gap-3"><div><p className="mb-2 text-xs font-bold uppercase text-primary">{service === 'number' ? '02' : '06'} · FORMS</p><h1 className="text-[1.8rem] font-extrabold leading-snug">{c.examples}</h1></div><img src={applicationImage.url} alt="신청서를 들고 안내하는 토더기" className="h-16 w-20 shrink-0 object-contain" /></div>
           <p className="mb-5 text-lg font-semibold leading-snug text-foreground">{c.exampleLead}</p>
           <div className="mb-4 flex items-center gap-3"><span className="shrink-0 rounded-full bg-secondary px-3 py-1 text-xs font-semibold text-secondary-foreground">{docIndex + 1} / {selectedDocs.length}</span><span className="min-w-0 text-lg font-bold leading-snug">{docName(currentDoc)}</span></div>
           <Button variant="paper" size="paper" onClick={openZoom} className="group w-full overflow-hidden" aria-label={`${docName(currentDoc)} ${c.zoom}`}><div className="w-full [container-type:inline-size]"><FormWithLabels doc={currentDoc} language={language} alt={imageAlt} /></div></Button>
@@ -169,7 +169,7 @@ function Guide() {
           <div className="mt-8"><Primary onClick={() => { if (docIndex < selectedDocs.length - 1) { setDocIndex(i => i + 1); window.scrollTo({ top: 0, behavior: 'instant' }); } else go('finish'); }}>{docIndex < selectedDocs.length - 1 ? c.nextDoc : c.afterWrite}</Primary></div>
         </>}
         {step === 'finish' && <>
-          <p className="mb-2 text-xs font-bold uppercase text-primary">{service === 'number' ? '03' : '06'} · FINAL STEP</p><h1 className="mb-5 mt-16 whitespace-pre-line text-center text-[1.7rem] font-extrabold leading-snug sm:text-[1.9rem]">{c.finishLead}</h1>
+          <p className="mb-2 text-xs font-bold uppercase text-primary">{service === 'number' ? '03' : '07'} · FINAL STEP</p><h1 className="mb-5 mt-16 whitespace-pre-line text-center text-[1.7rem] font-extrabold leading-snug sm:text-[1.9rem]">{c.finishLead}</h1>
           <p className="mt-3 text-center text-base text-muted-foreground">{c.finishNote}</p>
           <div className="my-8 flex items-center justify-center"><img src={counterImage.url} alt="창구 직원에게 안내받는 토더기" className="h-auto max-h-64 w-full object-contain" /></div>
           <Button variant="guide" size="guide" onClick={reset} className="w-full justify-center text-center"><span className="flex items-center gap-2"><RotateCcw aria-hidden="true" />{c.restart}</span></Button>
