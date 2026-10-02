@@ -16,8 +16,8 @@ const buttonVariants = cva(
         secondary: "bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
-        guide: "bg-primary text-primary-foreground hover:bg-primary/90 active:bg-primary/80",
-        choice: "border border-border bg-card text-card-foreground hover:border-primary hover:bg-surface active:bg-secondary",
+        guide: "bg-[image:var(--gradient-primary)] text-primary-foreground shadow-[var(--shadow-button)] transition-[transform,box-shadow,filter] duration-150 hover:brightness-105 active:scale-[0.98] active:shadow-none",
+        choice: "border border-border bg-card text-card-foreground shadow-[var(--shadow-card)] transition-[transform,box-shadow,border-color] duration-150 hover:border-primary active:scale-[0.98] active:shadow-none active:bg-surface",
         paper: "border border-border bg-card text-card-foreground hover:border-primary",
       },
       size: {
@@ -25,9 +25,9 @@ const buttonVariants = cva(
         sm: "h-8 rounded-md px-3 text-xs",
         lg: "h-10 rounded-md px-8",
         icon: "h-9 w-9",
-        guide: "min-h-16 rounded-lg px-6 py-4 text-lg font-bold whitespace-normal [&_svg]:size-5",
-        choice: "min-h-20 rounded-lg px-5 py-4 whitespace-normal [&_svg]:size-5",
-        paper: "h-auto rounded-lg p-0",
+        guide: "min-h-16 rounded-2xl px-6 py-4 text-lg font-bold whitespace-normal [&_svg]:size-5",
+        choice: "min-h-20 rounded-2xl px-5 py-4 whitespace-normal [&_svg]:size-5",
+        paper: "h-auto rounded-2xl p-0 shadow-[var(--shadow-card)]",
       },
     },
     defaultVariants: {
