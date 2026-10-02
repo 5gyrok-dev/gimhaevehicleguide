@@ -116,7 +116,7 @@ function Guide() {
           <div className="mt-6 space-y-2 rounded-2xl border border-primary/35 bg-cream px-5 py-4 text-center">{[c.roleSeller, c.roleBuyer].map(r => <p key={r} className="text-lg font-bold leading-snug text-foreground">{r}</p>)}</div>
         </>}
         {step === 'preparation' && <>
-          <p className="mb-2 text-xs font-bold uppercase text-primary">03 · PREPARATION</p><h1 className={visitor === 'seller' ? 'whitespace-pre-line text-[1.6rem] font-extrabold leading-snug sm:text-[1.9rem]' : 'whitespace-pre-line text-[clamp(1.05rem,4.33vw,1.75rem)] font-extrabold leading-snug'}>{visitor === 'seller' ? c.sellerNeed : c.buyerNeed}</h1>
+          <p className="mb-2 text-xs font-bold uppercase text-primary">03 · PREPARATION</p><h1 className={visitor === 'seller' ? 'whitespace-pre-line text-[1.6rem] font-extrabold leading-snug sm:text-[1.9rem]' : '-mx-3 whitespace-pre-line text-[clamp(1.1rem,4.8vw,1.9rem)] font-extrabold leading-snug sm:mx-0'}>{visitor === 'seller' ? c.sellerNeed : c.buyerNeed}</h1>
           {visitor === 'buyer' && <p className="mt-3 text-base font-medium text-muted-foreground">{c.buyerNeedNote}</p>}
           <div className="mt-8 rounded-2xl border border-primary/30 bg-cream px-5 py-5"><p className="mb-3 text-lg font-bold">{c.docsTitle}</p><ol className="list-inside list-decimal space-y-2 text-lg font-semibold leading-snug"><li>{c.transferForm}</li><li>{c.certificate}</li></ol></div>
           <div className="mt-auto pt-12"><Primary onClick={() => go('insurance')}>{c.understood}</Primary></div>
@@ -142,7 +142,7 @@ function Guide() {
         {step === 'example' && <>
           <div className="mb-5 flex items-start justify-between gap-3"><div><p className="mb-2 text-xs font-bold uppercase text-primary">{service === 'number' ? '02' : '05'} · FORMS</p><h1 className="text-[1.8rem] font-extrabold leading-snug">{c.examples}</h1></div><img src={applicationImage.url} alt="신청서를 들고 안내하는 토더기" className="h-16 w-20 shrink-0 object-contain" /></div>
           <p className="mb-5 text-lg font-semibold leading-snug text-foreground">{c.exampleLead}</p>
-          <div className="mb-4 flex items-center justify-between gap-3"><span className="min-w-0 text-lg font-bold leading-snug">{docName(currentDoc)}</span><span className="shrink-0 rounded-full bg-secondary px-3 py-1 text-xs font-semibold text-secondary-foreground">{docIndex + 1} / {selectedDocs.length}</span></div>
+          <div className="mb-4 flex items-center gap-3"><span className="shrink-0 rounded-full bg-secondary px-3 py-1 text-xs font-semibold text-secondary-foreground">{docIndex + 1} / {selectedDocs.length}</span><span className="min-w-0 text-lg font-bold leading-snug">{docName(currentDoc)}</span></div>
           <Button variant="paper" size="paper" onClick={openZoom} className="group w-full overflow-hidden" aria-label={`${docName(currentDoc)} ${c.zoom}`}><div className="w-full [container-type:inline-size]"><FormWithLabels doc={currentDoc} language={language} alt={imageAlt} /></div></Button>
           <div className="mt-3 flex flex-wrap gap-2"><Button variant="outline" onClick={openZoom} className="h-11 text-base"><ZoomIn />{c.zoom}</Button></div>
           <div className="mt-8"><Primary onClick={() => { if (docIndex < selectedDocs.length - 1) { setDocIndex(i => i + 1); window.scrollTo({ top: 0, behavior: 'instant' }); } else go('finish'); }}>{docIndex < selectedDocs.length - 1 ? c.nextDoc : c.afterWrite}</Primary></div>
@@ -151,7 +151,7 @@ function Guide() {
           <p className="mb-2 text-xs font-bold uppercase text-primary">{service === 'number' ? '03' : '06'} · NEXT</p><h1 className="mb-5 text-[1.9rem] font-extrabold leading-snug">{c.finishTitle}</h1>
           <p className="text-xl font-bold leading-snug">{c.finishLead}</p><p className="mt-3 text-base text-muted-foreground">{c.finishNote}</p>
           <div className="my-8 flex flex-1 items-center justify-center"><img src={counterImage.url} alt="창구 직원에게 안내받는 토더기" className="h-auto max-h-64 w-full object-contain" /></div>
-          <Button variant="guide" size="guide" onClick={reset} className="w-full justify-between text-left"><span className="flex items-center gap-2"><RotateCcw aria-hidden="true" />{c.restart}</span></Button>
+          <Button variant="guide" size="guide" onClick={reset} className="w-full justify-center text-center"><span className="flex items-center gap-2"><RotateCcw aria-hidden="true" />{c.restart}</span></Button>
         </>}
       </main>
     </div>
