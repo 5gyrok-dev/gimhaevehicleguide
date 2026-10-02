@@ -58,7 +58,7 @@ function Guide() {
   const currentDoc: DocumentKey = selectedDocs[docIndex] ?? 'transferBoth';
   const docName = (d: DocumentKey) => c[documentTitle[d]];
   const exampleSteps: Step[] = selectedDocs.map(() => 'example');
-  const sequence: Step[] = service === 'number' ? ['language', 'service', ...exampleSteps, 'finish'] : ['language', 'service', ...(service ? ['visitor' as Step, ...(visitor && visitor !== 'together' ? ['preparation' as Step] : []), 'insurance' as Step, ...(insurance === false ? ['insuranceNote' as Step] : []), 'address' as Step, ...(knowsAddress === false ? ['addressNote' as Step] : []), ...exampleSteps, 'finish' as Step] : [])];
+  const sequence: Step[] = service === 'number' ? ['language', 'service', ...exampleSteps, 'finish'] : ['language', 'service', ...([ 'visitor' as Step, ...(visitor && visitor !== 'together' ? ['preparation' as Step] : []), 'insurance' as Step, ...(insurance === false ? ['insuranceNote' as Step] : []), 'address' as Step, ...(knowsAddress === false ? ['addressNote' as Step] : []), ...exampleSteps, 'finish' as Step])];
   const progress = Math.max(1, sequence.indexOf(step) + 1 + (step === 'example' ? docIndex : 0));
 
   const go = (next: Step) => {
