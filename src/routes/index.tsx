@@ -97,7 +97,7 @@ function Guide() {
       </header>
       <main key={`${step}-${docIndex}`} className="guide-enter flex w-full flex-1 flex-col px-6 pb-8 pt-9 sm:px-9">
         {step === 'start' && <>
-          <div className="mx-auto mb-5 inline-flex w-fit items-center gap-2 rounded-full bg-secondary px-3 py-1.5 text-xs font-bold tracking-wide text-secondary-foreground"><span className="h-2 w-2 rounded-full bg-gold" />VEHICLE REGISTRATION</div>
+          <div className="mx-auto mb-5 inline-flex w-fit items-center gap-2 rounded-full bg-secondary px-3 py-1.5 text-xs font-bold tracking-wide text-secondary-foreground"><span className="h-2 w-2 rounded-full bg-primary" />VEHICLE REGISTRATION</div>
           <h1 className="text-center text-[2.2rem] font-extrabold leading-tight text-foreground">{c.startTitle}</h1>
           <div className="my-6 flex items-center justify-center"><img src={startImage.url} alt="차를 타고 있는 토더기" className="h-auto max-h-[320px] w-full object-contain" /></div>
           <div className="mt-12"><Primary onClick={() => go('language')}>START</Primary></div>
