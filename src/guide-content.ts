@@ -4,7 +4,7 @@ export const languageNames: Record<Language, string> = { ko: '한국어', en: 'E
 
 const copy = {
   ko: {
-    app: '김해시 외국인 자동차 등록 안내', startTitle: '자동차 등록 안내', language: '언어를 선택해주세요',
+    app: '김해시 외국인 자동차 등록 안내 서비스', startTitle: '자동차 등록 안내', language: '언어를 선택해주세요',
     service: '어떤 업무를 하시나요?', transfer: '명의 이전', transferDetail: '차량 소유자를 변경하는 경우', number: '번호 변경', numberDetail: '자동차등록번호를 변경하는 경우',
     visitor: '오늘 누가 함께 방문했나요?', together: '양도인 + 양수인 함께 방문', seller: '양도인만 방문', buyer: '양수인만 방문',
     roleSeller: '양도인 = 차량을 파는 사람', roleBuyer: '양수인 = 차량을 사는 사람',
