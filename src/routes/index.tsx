@@ -4,8 +4,8 @@ import { ArrowLeft, ArrowRight, ChevronRight, RotateCcw, X, ZoomIn, ZoomOut } fr
 import { Button } from '@/components/ui/button';
 import { documentFields, documentTitle, fieldText, languageNames, languages, previewSize, t, type DocumentKey, type Language } from '@/guide-content';
 import startImage from '@/assets/todugi_start_car_transparent.png.asset.json';
-import applicationImage from '@/assets/todugi_application_guide.png.asset.json';
-import counterImage from '@/assets/todugi_counter_guide.png.asset.json';
+import applicationImage from '@/assets/todugi_application_guide_transparent.png.asset.json';
+import counterImage from '@/assets/todugi_counter_guide_transparent.png.asset.json';
 import transferBothPreview from '@/assets/form_transfer_both.png.asset.json';
 import transferSellerPreview from '@/assets/form_transfer_seller.png.asset.json';
 import certificatePreview from '@/assets/form_certificate.png.asset.json';
@@ -97,7 +97,7 @@ function Guide() {
       </header>
       <main key={`${step}-${docIndex}`} className="guide-enter flex w-full flex-1 flex-col px-6 pb-8 pt-9 sm:px-9">
         {step === 'start' && <>
-          <div className="mx-auto mb-5 inline-flex w-fit items-center gap-2 rounded-full bg-secondary px-3 py-1.5 text-xs font-bold tracking-wide text-secondary-foreground"><span className="h-2 w-2 rounded-full bg-gold" />VEHICLE REGISTRATION</div>
+          <div className="mx-auto mb-5 inline-flex w-fit items-center gap-2 rounded-full bg-secondary px-3 py-1.5 text-xs font-bold tracking-wide text-secondary-foreground"><span className="h-2 w-2 rounded-full bg-primary" />VEHICLE REGISTRATION</div>
           <h1 className="text-center text-[2.2rem] font-extrabold leading-tight text-foreground">{c.startTitle}</h1>
           <div className="my-6 flex items-center justify-center"><img src={startImage.url} alt="차를 타고 있는 토더기" className="h-auto max-h-[320px] w-full object-contain" /></div>
           <div className="mt-12"><Primary onClick={() => go('language')}>START</Primary></div>
@@ -113,12 +113,12 @@ function Guide() {
         {step === 'visitor' && <>
           <p className="mb-2 text-xs font-bold uppercase text-primary">02 · VISIT</p><h1 className="mb-7 text-[1.9rem] font-extrabold leading-snug">{c.visitor}</h1>
           <div className="space-y-3"><Choice title={c.together} onClick={() => { setVisitor('together'); setDocIndex(0); go('insurance'); }} /><Choice i={1} title={c.seller} onClick={() => { setVisitor('seller'); setDocIndex(0); go('preparation'); }} /><Choice i={2} title={c.buyer} onClick={() => { setVisitor('buyer'); setDocIndex(0); go('preparation'); }} /></div>
-          <div className="mt-6 space-y-2 rounded-2xl border border-gold/60 bg-cream px-5 py-4 text-center">{[c.roleSeller, c.roleBuyer].map(r => <p key={r} className="text-lg font-bold leading-snug text-foreground">{r}</p>)}</div>
+          <div className="mt-6 space-y-2 rounded-2xl border border-primary/35 bg-cream px-5 py-4 text-center">{[c.roleSeller, c.roleBuyer].map(r => <p key={r} className="text-lg font-bold leading-snug text-foreground">{r}</p>)}</div>
         </>}
         {step === 'preparation' && <>
           <p className="mb-2 text-xs font-bold uppercase text-primary">03 · PREPARATION</p><h1 className={visitor === 'seller' ? 'whitespace-pre-line text-[1.6rem] font-extrabold leading-snug sm:text-[1.9rem]' : 'whitespace-pre-line text-[clamp(0.8rem,3.9vw,1.6rem)] font-extrabold leading-snug'}>{visitor === 'seller' ? c.sellerNeed : c.buyerNeed}</h1>
           {visitor === 'buyer' && <p className="mt-3 text-base font-medium text-muted-foreground">{c.buyerNeedNote}</p>}
-          <div className="mt-8 rounded-2xl border border-gold/50 bg-cream px-5 py-5"><p className="mb-3 text-lg font-bold">{c.docsTitle}</p><ol className="list-inside list-decimal space-y-2 text-lg font-semibold leading-snug"><li>{c.transferForm}</li><li>{c.certificate}</li></ol></div>
+          <div className="mt-8 rounded-2xl border border-primary/30 bg-cream px-5 py-5"><p className="mb-3 text-lg font-bold">{c.docsTitle}</p><ol className="list-inside list-decimal space-y-2 text-lg font-semibold leading-snug"><li>{c.transferForm}</li><li>{c.certificate}</li></ol></div>
           <div className="mt-auto pt-12"><Primary onClick={() => go('insurance')}>{c.understood}</Primary></div>
         </>}
         {step === 'insurance' && <>
@@ -140,7 +140,7 @@ function Guide() {
           <div className="mt-auto pt-12"><Primary onClick={() => { setDocIndex(0); go('example'); }}>{c.addressDone}</Primary></div>
         </>}
         {step === 'example' && <>
-          <div className="mb-5 flex items-start justify-between gap-3"><div><p className="mb-2 text-xs font-bold uppercase text-primary">{service === 'number' ? '02' : '05'} · FORMS</p><h1 className="text-[1.8rem] font-extrabold leading-snug">{c.examples}</h1></div><img src={applicationImage.url} alt="신청서를 들고 안내하는 토더기" className="h-16 w-20 shrink-0 object-contain mix-blend-multiply" /></div>
+          <div className="mb-5 flex items-start justify-between gap-3"><div><p className="mb-2 text-xs font-bold uppercase text-primary">{service === 'number' ? '02' : '05'} · FORMS</p><h1 className="text-[1.8rem] font-extrabold leading-snug">{c.examples}</h1></div><img src={applicationImage.url} alt="신청서를 들고 안내하는 토더기" className="h-16 w-20 shrink-0 object-contain" /></div>
           <p className="mb-5 text-lg font-semibold leading-snug text-foreground">{c.exampleLead}</p>
           <div className="mb-4 flex items-center justify-between gap-3"><span className="min-w-0 text-lg font-bold leading-snug">{docName(currentDoc)}</span><span className="shrink-0 rounded-full bg-secondary px-3 py-1 text-xs font-semibold text-secondary-foreground">{docIndex + 1} / {selectedDocs.length}</span></div>
           <Button variant="paper" size="paper" onClick={openZoom} className="group w-full overflow-hidden" aria-label={`${docName(currentDoc)} ${c.zoom}`}><div className="w-full [container-type:inline-size]"><FormWithLabels doc={currentDoc} language={language} alt={imageAlt} /></div></Button>
@@ -150,8 +150,8 @@ function Guide() {
         {step === 'finish' && <>
           <p className="mb-2 text-xs font-bold uppercase text-primary">{service === 'number' ? '03' : '06'} · NEXT</p><h1 className="mb-5 text-[1.9rem] font-extrabold leading-snug">{c.finishTitle}</h1>
           <p className="text-xl font-bold leading-snug">{c.finishLead}</p><p className="mt-3 text-base text-muted-foreground">{c.finishNote}</p>
-          <div className="my-8 flex flex-1 items-center justify-center rounded-2xl bg-surface"><img src={counterImage.url} alt="창구 직원에게 안내받는 토더기" className="h-auto max-h-64 w-full object-contain mix-blend-multiply" /></div>
-          <Button variant="outline" size="guide" onClick={reset} className="w-full rounded-2xl"><RotateCcw />{c.restart}</Button>
+          <div className="my-8 flex flex-1 items-center justify-center"><img src={counterImage.url} alt="창구 직원에게 안내받는 토더기" className="h-auto max-h-64 w-full object-contain" /></div>
+          <Button variant="guide" size="guide" onClick={reset} className="w-full justify-between text-left"><span className="flex items-center gap-2"><RotateCcw aria-hidden="true" />{c.restart}</span></Button>
         </>}
       </main>
     </div>

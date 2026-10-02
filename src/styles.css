@@ -40,7 +40,7 @@
   --secondary-foreground: oklch(0.27 0.07 253);
   --muted: oklch(0.95 0.01 250);
   --muted-foreground: oklch(0.48 0.035 255);
-  --accent: oklch(0.94 0.06 85);
+  --accent: oklch(0.94 0.03 245);
   --accent-foreground: oklch(0.28 0.05 255);
   --border: oklch(0.87 0.015 250);
   --input: oklch(0.87 0.015 250);
@@ -49,7 +49,7 @@
   --highlight: oklch(0.94 0.045 5);
   --shadow-app: oklch(0.23 0.035 255 / 0.06);
   --gold: oklch(0.84 0.13 85);
-  --cream: oklch(0.975 0.022 80);
+  --cream: oklch(0.975 0.018 245);
   --gradient-app: linear-gradient(180deg, oklch(1 0 0) 0%, oklch(0.975 0.012 250) 100%);
   --gradient-primary: linear-gradient(180deg, var(--primary-soft), var(--primary));
   --shadow-button: 0 6px 16px -6px oklch(0.56 0.15 253 / 0.55), inset 0 1px 0 oklch(1 0 0 / 0.25);
