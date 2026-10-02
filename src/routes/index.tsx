@@ -55,7 +55,7 @@ function Guide() {
   const drag = useRef<{ x: number; y: number; startX: number; startY: number } | null>(null);
   const c = t(language);
   const selectedDocs: DocumentKey[] = service === 'number' ? ['numberForm'] : visitor === 'seller' ? ['transferSeller', 'certificate'] : ['transferBoth', 'certificate'];
-  const currentDoc: DocumentKey = selectedDocs[docIndex] ?? selectedDocs[0];
+  const currentDoc: DocumentKey = selectedDocs[docIndex] ?? 'transferBoth';
   const docName = (d: DocumentKey) => c[documentTitle[d]];
   const exampleSteps: Step[] = selectedDocs.map(() => 'example');
   const sequence: Step[] = service === 'number' ? ['language', 'service', ...exampleSteps, 'finish'] : ['language', 'service', ...(service ? ['visitor' as Step, ...(visitor && visitor !== 'together' ? ['preparation' as Step] : []), 'insurance' as Step, ...(insurance === false ? ['insuranceNote' as Step] : []), 'address' as Step, ...(knowsAddress === false ? ['addressNote' as Step] : []), ...exampleSteps, 'finish' as Step] : [])];
