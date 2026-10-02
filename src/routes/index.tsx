@@ -1,6 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router';
 import { useEffect, useRef, useState } from 'react';
-import { ArrowLeft, ArrowRight, ChevronRight, RotateCcw, X, ZoomIn, ZoomOut } from 'lucide-react';
+import { ArrowLeft, ArrowRight, ChevronRight, Coins, Gavel, Receipt, Route, RotateCcw, SquareParking, X, ZoomIn, ZoomOut } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { documentFields, documentTitle, fieldText, languageNames, languages, previewSize, t, type DocumentKey, type Language } from '@/guide-content';
 import startImage from '@/assets/todugi_start_car_transparent.png.asset.json';
@@ -23,7 +23,7 @@ export const Route = createFileRoute('/')({
   component: Guide,
 });
 
-type Step = 'start' | 'language' | 'service' | 'visitor' | 'preparation' | 'insurance' | 'insuranceNote' | 'address' | 'addressNote' | 'example' | 'finish';
+type Step = 'start' | 'language' | 'service' | 'visitor' | 'preparation' | 'insurance' | 'insuranceNote' | 'check' | 'checkNote' | 'address' | 'addressNote' | 'example' | 'finish';
 type Service = 'transfer' | 'number';
 type Visitor = 'together' | 'seller' | 'buyer';
 const docs: Record<DocumentKey, { preview: string }> = {
@@ -58,7 +58,7 @@ function Guide() {
   const currentDoc: DocumentKey = selectedDocs[docIndex] ?? 'transferBoth';
   const docName = (d: DocumentKey) => c[documentTitle[d]];
   const exampleSteps: Step[] = selectedDocs.map(() => 'example');
-  const sequence: Step[] = service === 'number' ? ['language', 'service', ...exampleSteps, 'finish'] : ['language', 'service', ...([ 'visitor' as Step, ...(visitor && visitor !== 'together' ? ['preparation' as Step] : []), 'insurance' as Step, ...(insurance === false ? ['insuranceNote' as Step] : []), 'address' as Step, ...(knowsAddress === false ? ['addressNote' as Step] : []), ...exampleSteps, 'finish' as Step])];
+  const sequence: Step[] = service === 'number' ? ['language', 'service', ...exampleSteps, 'finish'] : ['language', 'service', ...([ 'visitor' as Step, ...(visitor && visitor !== 'together' ? ['preparation' as Step] : []), 'insurance' as Step, ...(insurance === false ? ['insuranceNote' as Step] : []), 'check' as Step, 'address' as Step, ...(knowsAddress === false ? ['addressNote' as Step] : []), ...exampleSteps, 'finish' as Step])];
   const progress = Math.max(1, sequence.indexOf(step) + 1 + (step === 'example' ? docIndex : 0));
 
   const go = (next: Step) => {
@@ -127,13 +127,26 @@ function Guide() {
         </>}
         {step === 'insurance' && <>
           <p className="mb-2 text-xs font-bold uppercase text-primary">03 · INSURANCE</p><h1 className="mb-8 text-[1.9rem] font-extrabold leading-snug">{c.insurance}</h1>
-          <div className="space-y-3"><Choice title={c.yes} onClick={() => { setInsurance(true); go('address'); }} /><Choice i={1} title={c.no} onClick={() => { setInsurance(false); go('insuranceNote'); }} /></div>
+          <div className="space-y-3"><Choice title={c.yes} onClick={() => { setInsurance(true); go('check'); }} /><Choice i={1} title={c.no} onClick={() => { setInsurance(false); go('insuranceNote'); }} /></div>
           <div className="mt-auto flex justify-center pt-8"><img src={startImage.url} alt="" aria-hidden="true" className="guide-enter h-32 w-auto -translate-x-[7.5%] object-contain" /></div>
         </>}
         {step === 'insuranceNote' && <>
           <p className="mb-2 text-xs font-bold uppercase text-primary">03 · INSURANCE</p><h1 className="text-[1.9rem] font-extrabold leading-snug">{c.insuranceNote}</h1>
           <div className="mt-auto flex justify-center pt-8"><img src={applicationImage.url} alt="" aria-hidden="true" className="guide-enter h-32 w-auto object-contain" /></div>
-          <div className="pt-6"><Primary onClick={() => go('address')}>{c.continue}</Primary></div>
+          <div className="pt-6"><Primary onClick={() => go('check')}>{c.continue}</Primary></div>
+        </>}
+        {step === 'check' && <>
+          <p className="mb-2 text-xs font-bold uppercase text-primary">04 · CHECK</p><h1 className="mb-3 text-[1.6rem] font-extrabold leading-snug">{c.check}</h1>
+          <p className="mb-7 text-sm font-medium text-muted-foreground">{c.checkSub}</p>
+          <div className="space-y-3"><Choice title={c.checkYes} onClick={() => go('address')} /><Choice i={1} title={c.checkNo} onClick={() => go('checkNote')} /></div>
+          <div className="mt-auto flex justify-center pt-8"><img src={startImage.url} alt="" aria-hidden="true" className="guide-enter h-32 w-auto -translate-x-[7.5%] object-contain" /></div>
+        </>}
+        {step === 'checkNote' && <>
+          <p className="mb-2 text-xs font-bold uppercase text-primary">04 · CHECK</p><h1 className="text-[1.7rem] font-extrabold leading-snug">{c.checkNoteTitle}</h1>
+          <div className="mt-5 space-y-3"><div className="rounded-2xl border border-primary/30 bg-cream px-5 py-4"><p className="flex items-start gap-2 text-lg font-bold leading-snug"><span className="shrink-0 text-primary">①</span><span>{c.checkStep1}</span></p></div><div className="rounded-2xl border border-primary/30 bg-cream px-5 py-4"><p className="flex items-start gap-2 text-lg font-bold leading-snug"><span className="shrink-0 text-primary">②</span><span>{c.checkStep2}</span></p></div></div>
+          <p className="mt-3 text-sm font-medium text-muted-foreground">{c.checkHint}</p>
+          <div className="mt-5 rounded-2xl border border-primary/30 bg-cream px-5 py-4"><p className="text-base font-bold">{c.checkListTitle}</p><ul className="mt-2 space-y-1.5">{(c.checkItems as readonly string[]).map((item, idx) => { const icons = [Receipt, Coins, Gavel, SquareParking, Route]; const Icon = icons[idx % icons.length]; return <li key={item} className="flex items-center gap-2 text-base font-semibold leading-snug"><Icon aria-hidden="true" className="h-4 w-4 shrink-0 text-primary" />{item}</li>; })}</ul></div>
+          <div className="pt-6"><Primary onClick={() => go('address')}>{c.understood}</Primary></div>
         </>}
         {step === 'address' && <>
           <p className="mb-2 text-xs font-bold uppercase text-primary">04 · ADDRESS</p><h1 className="mb-8 text-[1.4rem] font-extrabold leading-snug sm:text-[1.9rem]">{c.address}</h1>
