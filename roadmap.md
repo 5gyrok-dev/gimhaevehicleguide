@@ -1,3 +1,7 @@
-- [x] Connect the four supplied character images and four original PDF examples.
-- [x] Build the five-language guided flow and highlighted-field translations.
-- [x] Verify transfer branches, number change, mobile viewing, and file links.
+# Roadmap
+
+- [x] 노란 크림 박스 → 파란 톤으로 변경 (cream/accent 토큰, 골드 테두리·점 제거)
+- [ ] 창구 화면 토더기 이미지 배경 투명화 (첫 화면과 동일 방식) + mix-blend-multiply 제거
+- [ ] 신청서 화면 토더기(작은 이미지)도 동일 투명화
+- [ ] 파란 톤 변경 + 투명 이미지 화면 검증
+- [ ] Playwright 흐름 검증에서 "한국어" 버튼 클릭 실패 원인 확인 (버튼 라벨 확인 필요)
