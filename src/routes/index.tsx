@@ -1,6 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router';
 import { useEffect, useRef, useState } from 'react';
-import { ArrowLeft, ArrowRight, ChevronRight, Coins, Gavel, Receipt, Route as RouteIcon, RotateCcw, SquareParking, X, ZoomIn, ZoomOut } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Car, ChevronRight, Coins, ListChecks, Receipt, Route as RouteIcon, RotateCcw, SquareParking, X, ZoomIn, ZoomOut } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { documentFields, documentTitle, fieldText, languageNames, languages, previewSize, t, type DocumentKey, type Language } from '@/guide-content';
 import startImage from '@/assets/todugi_start_car_transparent.png.asset.json';
@@ -91,7 +91,7 @@ function Guide() {
         <div className="flex min-h-11 items-center justify-between gap-3">
           {step !== 'start' ? <Button variant="ghost" size="icon" onClick={back} aria-label={c.back} title={c.back} className="-ml-2 shrink-0"><ArrowLeft /></Button> : <div className="h-9 w-9 shrink-0" />}
           <span className="text-center text-sm font-bold leading-snug text-muted-foreground">{c.app}</span>
-          <span className="min-w-9 text-right text-sm font-semibold tabular-nums text-muted-foreground">{step === 'start' ? '' : `${progress} / ${sequence.length}`}</span>
+          <span className="min-w-9 whitespace-nowrap text-right text-sm font-semibold tabular-nums text-muted-foreground">{step === 'start' ? '' : `${progress} / ${sequence.length}`}</span>
         </div>
         {step !== 'start' && <div role="progressbar" aria-valuenow={progress} aria-valuemin={1} aria-valuemax={sequence.length} className="mt-4 h-1.5 overflow-hidden rounded-full bg-secondary"><div className="h-full rounded-full bg-primary transition-[width] duration-300" style={{ width: `${progress / sequence.length * 100}%` }} /></div>}
       </header>
@@ -142,9 +142,9 @@ function Guide() {
           <div className="mt-auto flex justify-center pt-8"><img src={startImage.url} alt="" aria-hidden="true" className="guide-enter h-32 w-auto -translate-x-[7.5%] object-contain" /></div>
         </>}
         {step === 'checkNote' && <>
-          <p className="mb-2 text-xs font-bold uppercase text-primary">04 · CHECK</p><h1 className="whitespace-nowrap text-[1.45rem] font-extrabold leading-snug">{c.checkNoteTitle}</h1>
+          <p className="mb-2 text-xs font-bold uppercase text-primary">04 · CHECK</p><h1 className={`text-[1.45rem] font-extrabold leading-snug ${language === 'ko' ? 'whitespace-nowrap' : ''}`}>{c.checkNoteTitle}</h1>
           <div className="mt-5 space-y-3"><div className="rounded-2xl border border-primary/30 bg-cream px-5 py-4"><p className="flex items-start gap-2 text-lg font-bold leading-snug"><span className="shrink-0 text-primary">①</span><span className="whitespace-pre-line">{c.checkStep1}</span></p><p className="mt-1.5 text-center text-sm font-medium text-muted-foreground">{c.checkStep1Sub}</p></div><div className="rounded-2xl border border-primary/30 bg-cream px-5 py-4"><p className="flex items-start gap-2 text-lg font-bold leading-snug"><span className="shrink-0 text-primary">②</span><span className="whitespace-pre-line">{c.checkStep2}</span></p></div></div>
-          <div className="mt-5 rounded-2xl border border-primary/30 bg-cream px-5 py-4"><p className="text-base font-bold">{c.checkListTitle}</p><ul className="mt-2 space-y-1.5">{(c.checkItems as readonly string[]).map((item, idx) => { const icons: typeof Receipt[] = [Receipt, Coins, Gavel, SquareParking, RouteIcon]; const Icon = icons[idx] ?? Receipt; return <li key={item} className="flex items-center gap-2 text-base font-semibold leading-snug"><Icon aria-hidden="true" className="h-4 w-4 shrink-0 text-primary" />{item}</li>; })}</ul></div>
+          <div className="mt-5 rounded-2xl border border-primary/30 bg-primary/5 px-5 py-4"><p className="flex items-center gap-2 text-lg font-bold leading-snug"><ListChecks aria-hidden="true" className="h-5 w-5 shrink-0 text-primary" />{c.checkListTitle}</p><ul className="mt-2 space-y-1.5">{(c.checkItems as readonly string[]).map((item, idx) => { const icons: typeof Receipt[] = [Receipt, Coins, Car, SquareParking, RouteIcon]; const Icon = icons[idx] ?? Receipt; return <li key={item} className="flex items-center gap-2 text-base font-semibold leading-snug"><Icon aria-hidden="true" className="h-4 w-4 shrink-0 text-primary" />{item}</li>; })}</ul></div>
           <div className="pt-6"><Primary onClick={() => go('address')}>{c.understood}</Primary></div>
         </>}
         {step === 'address' && <>
