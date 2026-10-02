@@ -99,24 +99,24 @@ function Guide() {
         {step === 'start' && <div className="flex flex-1 flex-col justify-center pb-14 pt-0">
           <div className="mx-auto mb-5 inline-flex w-fit items-center gap-2 rounded-full bg-secondary px-3 py-1.5 text-xs font-bold tracking-wide text-secondary-foreground"><span className="h-2 w-2 rounded-full bg-primary" />VEHICLE REGISTRATION</div>
           <h1 className="text-center text-[2.2rem] font-extrabold leading-tight text-foreground">{c.startTitle}</h1>
-          <div className="my-6 flex items-center justify-center"><img src={startImage.url} alt="차를 타고 있는 토더기" className="h-auto max-h-[320px] w-full object-contain" /></div>
+          <div className="my-6 flex items-center justify-center"><img src={startImage.url} alt="차를 타고 있는 토더기" className="h-auto max-h-[320px] w-full -translate-x-[7.5%] object-contain" /></div>
           <div className="mt-6"><Primary onClick={() => go('language')}>START</Primary></div>
         </div>}
         {step === 'language' && <>
           <p className="mb-2 text-xs font-bold uppercase text-primary">LANGUAGE</p><h1 className="mb-8 text-[1.9rem] font-extrabold leading-snug">{c.language}</h1>
           <div className="space-y-3">{languages.map((lang, i) => <Choice key={lang} i={i} title={languageNames[lang]} onClick={() => { setLanguage(lang); go('service'); }} />)}</div>
-          <div className="mt-auto flex justify-center pt-8"><img src={startImage.url} alt="" aria-hidden="true" className="guide-enter h-32 w-auto object-contain" /></div>
+          <div className="mt-auto flex justify-center pt-8"><img src={startImage.url} alt="" aria-hidden="true" className="guide-enter h-32 w-auto -translate-x-[7.5%] object-contain" /></div>
         </>}
         {step === 'service' && <>
           <p className="mb-2 text-xs font-bold uppercase text-primary">01 · SERVICE</p><h1 className="mb-8 text-[1.9rem] font-extrabold leading-snug">{c.service}</h1>
           <div className="space-y-4"><Choice title={c.transfer} detail={c.transferDetail} onClick={() => { if (service !== 'transfer') { setService('transfer'); setVisitor(null); setInsurance(null); setKnowsAddress(null); } setDocIndex(0); go('visitor'); }} /><Choice i={1} title={c.number} detail={c.numberDetail} onClick={() => { if (service !== 'number') { setService('number'); setVisitor(null); setInsurance(null); setKnowsAddress(null); } setDocIndex(0); go('example'); }} /></div>
-          <div className="mt-auto flex justify-center pt-8"><img src={startImage.url} alt="" aria-hidden="true" className="guide-enter h-32 w-auto object-contain" /></div>
+          <div className="mt-auto flex justify-center pt-8"><img src={startImage.url} alt="" aria-hidden="true" className="guide-enter h-32 w-auto -translate-x-[7.5%] object-contain" /></div>
         </>}
         {step === 'visitor' && <>
           <p className="mb-2 text-xs font-bold uppercase text-primary">02 · VISIT</p><h1 className="mb-7 text-[1.9rem] font-extrabold leading-snug">{c.visitor}</h1>
           <div className="space-y-3"><Choice title={c.together} onClick={() => { setVisitor('together'); setDocIndex(0); go('insurance'); }} /><Choice i={1} title={c.seller} onClick={() => { setVisitor('seller'); setDocIndex(0); go('preparation'); }} /><Choice i={2} title={c.buyer} onClick={() => { setVisitor('buyer'); setDocIndex(0); go('preparation'); }} /></div>
           <div className="mt-6 space-y-2 rounded-2xl border border-primary/35 bg-cream px-5 py-4 text-center">{[c.roleSeller, c.roleBuyer].map(r => <p key={r} className="text-lg font-bold leading-snug text-foreground">{r}</p>)}</div>
-          <div className="mt-auto flex justify-center pt-8"><img src={startImage.url} alt="" aria-hidden="true" className="guide-enter h-32 w-auto object-contain" /></div>
+          <div className="mt-auto flex justify-center pt-8"><img src={startImage.url} alt="" aria-hidden="true" className="guide-enter h-32 w-auto -translate-x-[7.5%] object-contain" /></div>
         </>}
         {step === 'preparation' && <>
           <p className="mb-2 text-xs font-bold uppercase text-primary">03 · PREPARATION</p><h1 className={`whitespace-pre-line font-extrabold leading-snug sm:text-[1.9rem] ${visitor === 'seller' ? 'text-[1.7rem]' : 'text-[1.35rem]'} ${visitor === 'buyer' ? 'mb-4' : 'mb-7'}`}>{visitor === 'seller' ? c.sellerNeed : c.buyerNeed}</h1>
@@ -128,7 +128,7 @@ function Guide() {
         {step === 'insurance' && <>
           <p className="mb-2 text-xs font-bold uppercase text-primary">03 · INSURANCE</p><h1 className="mb-8 text-[1.9rem] font-extrabold leading-snug">{c.insurance}</h1>
           <div className="space-y-3"><Choice title={c.yes} onClick={() => { setInsurance(true); go('address'); }} /><Choice i={1} title={c.no} onClick={() => { setInsurance(false); go('insuranceNote'); }} /></div>
-          <div className="mt-auto flex justify-center pt-8"><img src={startImage.url} alt="" aria-hidden="true" className="guide-enter h-32 w-auto object-contain" /></div>
+          <div className="mt-auto flex justify-center pt-8"><img src={startImage.url} alt="" aria-hidden="true" className="guide-enter h-32 w-auto -translate-x-[7.5%] object-contain" /></div>
         </>}
         {step === 'insuranceNote' && <>
           <p className="mb-2 text-xs font-bold uppercase text-primary">03 · INSURANCE</p><h1 className="text-[1.9rem] font-extrabold leading-snug">{c.insuranceNote}</h1>
@@ -138,7 +138,7 @@ function Guide() {
         {step === 'address' && <>
           <p className="mb-2 text-xs font-bold uppercase text-primary">04 · ADDRESS</p><h1 className="mb-8 text-[1.4rem] font-extrabold leading-snug sm:text-[1.9rem]">{c.address}</h1>
           <div className="space-y-3"><Choice title={c.addressYes} onClick={() => { setKnowsAddress(true); setDocIndex(0); go('example'); }} /><Choice i={1} title={c.addressNo} onClick={() => { setKnowsAddress(false); go('addressNote'); }} /></div>
-          <div className="mt-auto flex justify-center pt-8"><img src={startImage.url} alt="" aria-hidden="true" className="guide-enter h-32 w-auto object-contain" /></div>
+          <div className="mt-auto flex justify-center pt-8"><img src={startImage.url} alt="" aria-hidden="true" className="guide-enter h-32 w-auto -translate-x-[7.5%] object-contain" /></div>
         </>}
         {step === 'addressNote' && <>
           <p className="mb-2 text-xs font-bold uppercase text-primary">04 · ADDRESS</p><h1 className="text-[1.9rem] font-extrabold leading-snug">{c.addressTitle}</h1>
