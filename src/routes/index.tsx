@@ -138,7 +138,7 @@ function Guide() {
         {step === 'address' && <>
           <p className="mb-2 text-xs font-bold uppercase text-primary">04 · ADDRESS</p><h1 className="mb-8 text-[1.4rem] font-extrabold leading-snug sm:text-[1.9rem]">{c.address}</h1>
           <div className="space-y-3"><Choice title={c.addressYes} onClick={() => { setKnowsAddress(true); setDocIndex(0); go('example'); }} /><Choice i={1} title={c.addressNo} onClick={() => { setKnowsAddress(false); go('addressNote'); }} /></div>
-          <div className="mt-auto flex justify-center pt-8"><img src={startImage.url} alt="" aria-hidden="true" className="guide-enter h-32 w-auto object-contain" /></div>
+          <div className="mt-auto flex justify-center pt-8"><img src={startImage} alt="" aria-hidden="true" className="guide-enter h-32 w-auto object-contain" /></div>
         </>}
         {step === 'addressNote' && <>
           <p className="mb-2 text-xs font-bold uppercase text-primary">04 · ADDRESS</p><h1 className="text-[1.9rem] font-extrabold leading-snug">{c.addressTitle}</h1>
