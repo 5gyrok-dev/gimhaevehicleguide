@@ -8,7 +8,7 @@ const copy = {
     service: '어떤 업무를 하시나요?', transfer: '명의 이전', transferDetail: '차량 소유자를 변경하는 경우', number: '번호 변경', numberDetail: '자동차등록번호를 변경하는 경우',
     visitor: '오늘 누가 함께 방문했나요?', together: '양도인 + 양수인 함께 방문', seller: '양도인만 방문', buyer: '양수인만 방문',
     roleSeller: '양도인 = 차량을 파는 사람', roleBuyer: '양수인 = 차량을 사는 사람',
-    sellerNeed: '양수인의 외국인등록증과    \n도장을 준비해주세요.', buyerNeed: '자동차매도용 본인서명  \n사실확인서를 준비해주세요.', buyerNeedNote: '행정복지센터에서 발급할 수 있어요.',
+    sellerNeed: '양수인의 외국인등록증과    \n도장을 준비해주세요.', buyerNeed: '자동차매도용 본인서명사실확인서를\n준비해주세요.', buyerNeedNote: '행정복지센터에서 발급할 수 있어요.',
     docsTitle: '작성할 서류', understood: '확인했습니다',
     insurance: '자동차 보험에 가입했나요?', yes: '예', no: '아니오', insuranceNote: '보험 가입 여부는 창구에서 다시 확인해주세요.', continue: '계속하기',
       address: '양수인의 등록된 주소를   \n정확히 알고 있나요?', addressYes: '네, 알고 있어요', addressNo: '아니요',
