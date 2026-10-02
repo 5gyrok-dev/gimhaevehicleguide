@@ -135,8 +135,8 @@ function Guide() {
         </>}
         {step === 'addressNote' && <>
           <p className="mb-2 text-xs font-bold uppercase text-primary">04 · ADDRESS</p><h1 className="text-[1.9rem] font-extrabold leading-snug">{c.addressTitle}</h1>
-          <p className="mt-5 text-lg font-semibold leading-snug">{c.addressBody}</p>
-          <p className="mt-4 whitespace-nowrap rounded-xl bg-cream px-3 py-3 text-[0.9rem] font-medium">{c.addressHelp}</p>
+          <p className="mt-5 whitespace-nowrap text-center text-[0.95rem] font-semibold leading-snug">{c.addressBody}</p>
+          <p className="mt-4 whitespace-nowrap rounded-xl bg-cream px-3 py-3 text-center text-[0.9rem] font-medium">{c.addressHelp}</p>
           <div className="mt-auto pt-12"><Primary onClick={() => { setDocIndex(0); go('example'); }}>{c.addressDone}</Primary></div>
         </>}
         {step === 'example' && <>
