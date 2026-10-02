@@ -96,7 +96,7 @@ function Guide() {
         {step !== 'start' && <div role="progressbar" aria-valuenow={progress} aria-valuemin={1} aria-valuemax={sequence.length} className="mt-4 h-1.5 overflow-hidden rounded-full bg-secondary"><div className="h-full rounded-full bg-primary transition-[width] duration-300" style={{ width: `${progress / sequence.length * 100}%` }} /></div>}
       </header>
       <main key={`${step}-${docIndex}`} className="guide-enter flex w-full flex-1 flex-col px-6 pb-8 pt-9 sm:px-9">
-        {step === 'start' && <div className="flex flex-1 flex-col justify-center py-6">
+        {step === 'start' && <div className="flex flex-1 flex-col justify-center pb-14 pt-0">
           <div className="mx-auto mb-5 inline-flex w-fit items-center gap-2 rounded-full bg-secondary px-3 py-1.5 text-xs font-bold tracking-wide text-secondary-foreground"><span className="h-2 w-2 rounded-full bg-primary" />VEHICLE REGISTRATION</div>
           <h1 className="text-center text-[2.2rem] font-extrabold leading-tight text-foreground">{c.startTitle}</h1>
           <div className="my-6 flex items-center justify-center"><img src={startImage.url} alt="차를 타고 있는 토더기" className="h-auto max-h-[320px] w-full object-contain" /></div>
