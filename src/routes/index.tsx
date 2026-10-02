@@ -91,7 +91,7 @@ function Guide() {
         <div className="flex min-h-11 items-center justify-between gap-3">
           {step !== 'start' ? <Button variant="ghost" size="icon" onClick={back} aria-label={c.back} title={c.back} className="-ml-2 shrink-0"><ArrowLeft /></Button> : <div className="h-9 w-9 shrink-0" />}
           <span className="text-center text-sm font-bold leading-snug text-muted-foreground">{c.app}</span>
-          <span className="min-w-9 text-right text-sm font-semibold tabular-nums text-muted-foreground">{step === 'start' ? '' : `${progress} / ${sequence.length}`}</span>
+          <span className="min-w-9 whitespace-nowrap text-right text-sm font-semibold tabular-nums text-muted-foreground">{step === 'start' ? '' : `${progress} / ${sequence.length}`}</span>
         </div>
         {step !== 'start' && <div role="progressbar" aria-valuenow={progress} aria-valuemin={1} aria-valuemax={sequence.length} className="mt-4 h-1.5 overflow-hidden rounded-full bg-secondary"><div className="h-full rounded-full bg-primary transition-[width] duration-300" style={{ width: `${progress / sequence.length * 100}%` }} /></div>}
       </header>
