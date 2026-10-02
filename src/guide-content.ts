@@ -11,7 +11,7 @@ const copy = {
     sellerNeed: '양수인의 외국인등록증과    \n도장을 준비해주세요', buyerNeed: '양도인의 자동차매도용\n본인서명사실확인서를 준비해주세요', buyerNeedNote: '행정복지센터에서 발급할 수 있어요',
     docsTitle: '작성할 서류', understood: '확인했습니다',
     insurance: '자동차 보험에 가입했나요?', yes: '예', no: '아니오', insuranceNote: '보험 가입 여부는 창구에서 다시 확인해주세요', continue: '계속하기',
-    check: '차량의 체납·압류 여부를\n확인하셨나요?', checkSub: '이전등록 전 체납·압류 여부를 확인해주세요', checkYes: '네, 확인했어요', checkNo: '아니요',
+    check: '차량의 세금 체납·압류\n여부를 확인하셨나요?', checkSub: '이전등록 전 세금 체납·압류 여부를 확인해주세요', checkYes: '네, 확인했어요', checkNo: '아니요',
     checkNoteTitle: '체납·압류를 먼저 확인해주세요', checkStep1: '자동차등록원부에서 압류 여부를 확인하세요', checkStep2: '압류가 있다면 해제 여부를 확인한 후 진행하세요', checkHint: '자동차등록원부에서 차량의 압류 등록 여부를 확인할 수 있어요', checkListTitle: '이런 항목을 확인해주세요', checkItems: ['지방세 체납', '자동차세 체납', '경찰 관련 과태료', '주정차 위반 과태료', '고속도로 통행료 미납'],
       address: '양수인의 주소를 정확히 알고있나요?', addressYes: '네, 알고 있어요', addressNo: '아니요',
     addressTitle: '주소를 먼저 확인해주세요', addressBody: '외국인등록사실증명서에서 정확한 주소를 확인해주세요', addressHelp: '행정복지센터 또는 정부24에서 발급할 수 있어요', addressDone: '주소를 확인했어요',
