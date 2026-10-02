@@ -15,7 +15,7 @@ const copy = {
     addressTitle: '주소를 먼저 확인해주세요.', addressBody: '외국인등록 사실증명에서 정확한 주소를 확인할 수 있어요.', addressHelp: '행정복지센터 또는 정부24에서 발급할 수 있어요.', addressDone: '주소를 확인했어요',
     examples: '신청서 작성 예시', exampleLead: '예시를 보고 신청서를 작성해주세요.', original: '신청서 예시',
     zoom: '크게 보기', close: '닫기', zoomIn: '확대', zoomOut: '축소', nextDoc: '다음 서류', afterWrite: '작성 완료',
-    finishTitle: '다음 단계 안내', finishLead: '신청서를 모두 작성한 후 번호표를 뽑아주세요.', finishNote: '번호표를 뽑고 창구에서 안내받아주세요.',
+    finishTitle: '다음 단계 안내', finishLead: '신청서를 작성한 후 번호표를 뽑아주세요.', finishNote: '\n',
     restart: '처음부터 다시 시작', back: '이전',
     transferForm: '이전등록 신청서', certificate: '자동차양도증명서', numberForm: '자동차 변경등록 신청서',
   },
