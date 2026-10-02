@@ -136,7 +136,7 @@ function Guide() {
           <div className="pt-6"><Primary onClick={() => go('check')}>{c.continue}</Primary></div>
         </>}
         {step === 'check' && <>
-          <p className="mb-2 text-xs font-bold uppercase text-primary">04 · CHECK</p><h1 className="mb-3 text-[1.6rem] font-extrabold leading-snug">{c.check}</h1>
+          <p className="mb-2 text-xs font-bold uppercase text-primary">04 · CHECK</p><h1 className="mb-3 whitespace-pre-line text-[1.6rem] font-extrabold leading-snug">{c.check}</h1>
           <p className="mb-7 text-sm font-medium text-muted-foreground">{c.checkSub}</p>
           <div className="space-y-3"><Choice title={c.checkYes} onClick={() => go('address')} /><Choice i={1} title={c.checkNo} onClick={() => go('checkNote')} /></div>
           <div className="mt-auto flex justify-center pt-8"><img src={startImage.url} alt="" aria-hidden="true" className="guide-enter h-32 w-auto -translate-x-[7.5%] object-contain" /></div>
