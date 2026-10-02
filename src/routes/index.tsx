@@ -140,7 +140,7 @@ function Guide() {
           <div className="mt-auto pt-12"><Primary onClick={() => { setDocIndex(0); go('example'); }}>{c.addressDone}</Primary></div>
         </>}
         {step === 'example' && <>
-          <div className="mb-5 flex items-start justify-between gap-3"><div><p className="mb-2 text-xs font-bold uppercase text-primary">{service === 'number' ? '02' : '05'} · FORMS</p><h1 className="text-[1.8rem] font-extrabold leading-snug">{c.examples}</h1></div><img src={applicationImage.url} alt="신청서를 들고 안내하는 토더기" className="h-16 w-20 shrink-0 object-contain mix-blend-multiply" /></div>
+          <div className="mb-5 flex items-start justify-between gap-3"><div><p className="mb-2 text-xs font-bold uppercase text-primary">{service === 'number' ? '02' : '05'} · FORMS</p><h1 className="text-[1.8rem] font-extrabold leading-snug">{c.examples}</h1></div><img src={applicationImage.url} alt="신청서를 들고 안내하는 토더기" className="h-16 w-20 shrink-0 object-contain" /></div>
           <p className="mb-5 text-lg font-semibold leading-snug text-foreground">{c.exampleLead}</p>
           <div className="mb-4 flex items-center justify-between gap-3"><span className="min-w-0 text-lg font-bold leading-snug">{docName(currentDoc)}</span><span className="shrink-0 rounded-full bg-secondary px-3 py-1 text-xs font-semibold text-secondary-foreground">{docIndex + 1} / {selectedDocs.length}</span></div>
           <Button variant="paper" size="paper" onClick={openZoom} className="group w-full overflow-hidden" aria-label={`${docName(currentDoc)} ${c.zoom}`}><div className="w-full [container-type:inline-size]"><FormWithLabels doc={currentDoc} language={language} alt={imageAlt} /></div></Button>
@@ -150,8 +150,8 @@ function Guide() {
         {step === 'finish' && <>
           <p className="mb-2 text-xs font-bold uppercase text-primary">{service === 'number' ? '03' : '06'} · NEXT</p><h1 className="mb-5 text-[1.9rem] font-extrabold leading-snug">{c.finishTitle}</h1>
           <p className="text-xl font-bold leading-snug">{c.finishLead}</p><p className="mt-3 text-base text-muted-foreground">{c.finishNote}</p>
-          <div className="my-8 flex flex-1 items-center justify-center rounded-2xl bg-surface"><img src={counterImage.url} alt="창구 직원에게 안내받는 토더기" className="h-auto max-h-64 w-full object-contain mix-blend-multiply" /></div>
-          <Button variant="outline" size="guide" onClick={reset} className="w-full rounded-2xl"><RotateCcw />{c.restart}</Button>
+          <div className="my-8 flex flex-1 items-center justify-center"><img src={counterImage.url} alt="창구 직원에게 안내받는 토더기" className="h-auto max-h-64 w-full object-contain" /></div>
+          <Button variant="guide" size="guide" onClick={reset} className="w-full justify-between text-left"><span className="flex items-center gap-2"><RotateCcw aria-hidden="true" />{c.restart}</span></Button>
         </>}
       </main>
     </div>
