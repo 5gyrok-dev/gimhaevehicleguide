@@ -11,7 +11,7 @@ const copy = {
     sellerNeed: '양수인의 외국인등록증과    \n도장을 준비해주세요.', buyerNeed: '자동차매도용 본인서명사실확인서를\n준비해주세요.', buyerNeedNote: '행정복지센터에서 발급할 수 있어요.',
     docsTitle: '작성할 서류', understood: '확인했습니다',
     insurance: '자동차 보험에 가입했나요?', yes: '예', no: '아니오', insuranceNote: '보험 가입 여부는 창구에서 다시 확인해주세요.', continue: '계속하기',
-      address: '양수인의 등록된 주소를   \n정확히 알고 있나요?', addressYes: '네, 알고 있어요', addressNo: '아니요',
+      address: '양수인의 주소를 정확히 알고있나요?', addressYes: '네, 알고 있어요', addressNo: '아니요',
     addressTitle: '주소를 먼저 확인해주세요.', addressBody: '외국인등록 사실증명에서 정확한 주소를 확인할 수 있어요.', addressHelp: '행정복지센터 또는 정부24에서 발급할 수 있어요.', addressDone: '주소를 확인했어요',
     examples: '신청서 작성 예시', exampleLead: '예시를 보고 신청서를 작성해주세요.', original: '신청서 예시',
     zoom: '크게 보기', close: '닫기', zoomIn: '확대', zoomOut: '축소', nextDoc: '다음 서류', afterWrite: '작성 완료',
