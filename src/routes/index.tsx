@@ -2,21 +2,20 @@ import { createFileRoute } from '@tanstack/react-router';
 import { useEffect, useRef, useState } from 'react';
 import { ArrowLeft, ArrowRight, ChevronRight, RotateCcw, X, ZoomIn, ZoomOut } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { documentFields, fieldText, languageNames, languages, previewSize, t, type DocumentKey, type Language } from '@/guide-content';
+import { documentFields, documentTitle, fieldText, languageNames, languages, previewSize, t, type DocumentKey, type Language } from '@/guide-content';
 import startImage from '@/assets/todugi_start_car.png.asset.json';
 import applicationImage from '@/assets/todugi_application_guide.png.asset.json';
-import ticketImage from '@/assets/todugi_ticket_guide.png.asset.json';
 import counterImage from '@/assets/todugi_counter_guide.png.asset.json';
-import transferPreview from '@/assets/transfer_registration_form.png.asset.json';
-import certificatePreview from '@/assets/vehicle_transfer_certificate.png.asset.json';
-import powerPreview from '@/assets/power_of_attorney.png.asset.json';
-import numberPreview from '@/assets/number_change_application.png.asset.json';
+import transferBothPreview from '@/assets/form_transfer_both.png.asset.json';
+import transferSellerPreview from '@/assets/form_transfer_seller.png.asset.json';
+import certificatePreview from '@/assets/form_certificate.png.asset.json';
+import numberPreview from '@/assets/form_number_form.png.asset.json';
 
 export const Route = createFileRoute('/')({
   head: () => ({ meta: [
-    { title: '김해시 외국인 차량등록 안내 | 신청서 작성 안내' },
-    { name: 'description', content: '외국인 주민을 위한 김해시 차량 명의 이전·번호 변경 신청서 작성 및 번호표 발급 안내' },
-    { property: 'og:title', content: '김해시 외국인 차량등록 안내' },
+    { title: '김해시 외국인 자동차 등록 안내' },
+    { name: 'description', content: '외국인 주민을 위한 김해시 자동차 명의 이전·번호 변경 신청서 작성 안내' },
+    { property: 'og:title', content: '김해시 외국인 자동차 등록 안내' },
     { property: 'og:description', content: '5개 언어로 확인하는 차량 명의 이전·번호 변경 신청서 작성 안내' },
     { property: 'og:type', content: 'website' },
     { name: 'twitter:card', content: 'summary_large_image' },
@@ -24,20 +23,20 @@ export const Route = createFileRoute('/')({
   component: Guide,
 });
 
-type Step = 'start' | 'language' | 'service' | 'visitor' | 'preparation' | 'insurance' | 'insuranceNote' | 'example' | 'finish';
+type Step = 'start' | 'language' | 'service' | 'visitor' | 'preparation' | 'insurance' | 'insuranceNote' | 'address' | 'addressNote' | 'example' | 'finish';
 type Service = 'transfer' | 'number';
 type Visitor = 'together' | 'seller' | 'buyer';
 const docs: Record<DocumentKey, { preview: string }> = {
-  transferForm: { preview: transferPreview.url },
+  transferBoth: { preview: transferBothPreview.url },
+  transferSeller: { preview: transferSellerPreview.url },
   certificate: { preview: certificatePreview.url },
-  power: { preview: powerPreview.url },
   numberForm: { preview: numberPreview.url },
 };
 
 function FormWithLabels({ doc, language, alt, onDoubleClick }: { doc: DocumentKey; language: Language; alt: string; onDoubleClick?: () => void }) {
   return <div className="relative w-full select-none" onDoubleClick={onDoubleClick}>
     <img src={docs[doc].preview} alt={alt} draggable={false} className="block h-auto w-full" />
-    {language !== 'ko' && documentFields[doc].map((m, i) => <span key={i} className="pointer-events-none absolute whitespace-nowrap rounded-[3px] bg-primary px-[0.35em] py-[0.05em] text-[clamp(7px,1.8cqw,14px)] font-bold leading-tight text-primary-foreground shadow-sm" style={{ top: `${m.y / previewSize.h * 100}%`, ...(m.a === 'l' ? { right: `${100 - m.x / previewSize.w * 100}%` } : { left: `${m.x / previewSize.w * 100}%` }) }}>{fieldText(m.f, language)}</span>)}
+    {language !== 'ko' && documentFields[doc].map((m, i) => <span key={i} className="pointer-events-none absolute whitespace-nowrap rounded-[0.3em] border border-primary/35 bg-card/95 px-[0.4em] py-[0.05em] text-[clamp(7px,1.75cqw,14px)] font-bold leading-tight text-primary shadow-[0_1px_3px_var(--shadow-app)]" style={{ top: `${m.y / previewSize.h * 100}%`, ...(m.a === 'l' ? { right: `${100 - m.x / previewSize.w * 100}%` } : { left: `${m.x / previewSize.w * 100}%` }) }}>{fieldText(m.f, language)}</span>)}
   </div>;
 }
 
@@ -48,16 +47,18 @@ function Guide() {
   const [service, setService] = useState<Service | null>(null);
   const [visitor, setVisitor] = useState<Visitor | null>(null);
   const [insurance, setInsurance] = useState<boolean | null>(null);
+  const [knowsAddress, setKnowsAddress] = useState<boolean | null>(null);
   const [docIndex, setDocIndex] = useState(0);
   const [zoomed, setZoomed] = useState(false);
   const [zoom, setZoom] = useState(1);
   const [offset, setOffset] = useState({ x: 0, y: 0 });
   const drag = useRef<{ x: number; y: number; startX: number; startY: number } | null>(null);
   const c = t(language);
-  const selectedDocs: DocumentKey[] = service === 'number' ? ['numberForm'] : visitor === 'seller' ? ['transferForm', 'certificate', 'power'] : ['transferForm', 'certificate'];
-  const currentDoc: DocumentKey = selectedDocs[docIndex] ?? 'transferForm';
+  const selectedDocs: DocumentKey[] = service === 'number' ? ['numberForm'] : visitor === 'seller' ? ['transferSeller', 'certificate'] : ['transferBoth', 'certificate'];
+  const currentDoc: DocumentKey = selectedDocs[docIndex] ?? 'transferBoth';
+  const docName = (d: DocumentKey) => c[documentTitle[d]];
   const exampleSteps: Step[] = selectedDocs.map(() => 'example');
-  const sequence: Step[] = service === 'number' ? ['language', 'service', ...exampleSteps, 'finish'] : ['language', 'service', ...(service ? ['visitor' as Step, ...(visitor && visitor !== 'together' ? ['preparation' as Step] : []), 'insurance' as Step, ...(insurance === false ? ['insuranceNote' as Step] : []), ...exampleSteps, 'finish' as Step] : [])];
+  const sequence: Step[] = service === 'number' ? ['language', 'service', ...exampleSteps, 'finish'] : ['language', 'service', ...([ 'visitor' as Step, ...(visitor && visitor !== 'together' ? ['preparation' as Step] : []), 'insurance' as Step, ...(insurance === false ? ['insuranceNote' as Step] : []), 'address' as Step, ...(knowsAddress === false ? ['addressNote' as Step] : []), ...exampleSteps, 'finish' as Step])];
   const progress = Math.max(1, sequence.indexOf(step) + 1 + (step === 'example' ? docIndex : 0));
 
   const go = (next: Step) => {
@@ -70,7 +71,7 @@ function Guide() {
     const previous = history.at(-1);
     if (previous) { setHistory(h => h.slice(0, -1)); setStep(previous); window.scrollTo({ top: 0, behavior: 'instant' }); }
   };
-  const reset = () => { setStep('start'); setHistory([]); setLanguage('ko'); setService(null); setVisitor(null); setInsurance(null); setDocIndex(0); window.scrollTo({ top: 0, behavior: 'instant' }); };
+  const reset = () => { setStep('start'); setHistory([]); setLanguage('ko'); setService(null); setVisitor(null); setInsurance(null); setKnowsAddress(null); setDocIndex(0); window.scrollTo({ top: 0, behavior: 'instant' }); };
   const openZoom = () => { setZoom(1); setOffset({ x: 0, y: 0 }); setZoomed(true); };
   useEffect(() => {
     if (!zoomed) return;
@@ -79,13 +80,13 @@ function Guide() {
     document.body.style.overflow = 'hidden';
     return () => { document.removeEventListener('keydown', onKey); document.body.style.overflow = ''; };
   }, [zoomed]);
-  const imageAlt = `${c[currentDoc]} — ${c.original}`;
+  const imageAlt = `${docName(currentDoc)} — ${c.original}`;
 
   const Primary = ({ children, onClick }: { children: React.ReactNode; onClick: () => void }) => <Button size="guide" variant="guide" onClick={onClick} className="w-full justify-between text-left"><span>{children}</span><ArrowRight aria-hidden="true" /></Button>;
-  const Choice = ({ title, detail, onClick }: { title: string; detail?: string; onClick: () => void }) => <Button variant="choice" size="choice" onClick={onClick} className="w-full justify-between text-left"><span className="min-w-0 flex-1 whitespace-normal"><span className="block text-xl font-bold leading-snug">{title}</span>{detail && <span className="mt-1 block text-base font-normal leading-snug text-muted-foreground">{detail}</span>}</span><ChevronRight aria-hidden="true" className="ml-3 shrink-0" /></Button>;
+  const Choice = ({ title, detail, onClick, i = 0 }: { title: string; detail?: string; onClick: () => void; i?: number }) => <Button variant="choice" size="choice" onClick={onClick} className="guide-stagger w-full justify-between text-left" style={{ animationDelay: `${i * 60}ms` }}><span className="min-w-0 flex-1 whitespace-normal"><span className="block text-xl font-bold leading-snug">{title}</span>{detail && <span className="mt-1 block text-base font-normal leading-snug text-muted-foreground">{detail}</span>}</span><ChevronRight aria-hidden="true" className="ml-3 shrink-0" /></Button>;
 
-  return <div className="min-h-screen bg-background">
-    <div className="mx-auto flex min-h-screen w-full max-w-[560px] flex-col bg-card shadow-[0_8px_48px_var(--shadow-app)]">
+  return <div className="min-h-screen bg-app">
+    <div className="mx-auto flex min-h-screen w-full max-w-[560px] flex-col bg-app shadow-[0_8px_48px_var(--shadow-app)]">
       <header className="px-6 pt-6 sm:px-9">
         <div className="flex min-h-11 items-center justify-between gap-3">
           {step !== 'start' ? <Button variant="ghost" size="icon" onClick={back} aria-label={c.back} title={c.back} className="-ml-2 shrink-0"><ArrowLeft /></Button> : <div className="h-9 w-9 shrink-0" />}
@@ -96,61 +97,66 @@ function Guide() {
       </header>
       <main key={`${step}-${docIndex}`} className="guide-enter flex w-full flex-1 flex-col px-6 pb-8 pt-9 sm:px-9">
         {step === 'start' && <>
-          <div className="mb-5 inline-flex w-fit items-center gap-2 rounded-full bg-secondary px-3 py-1.5 text-xs font-bold text-secondary-foreground">GIMHAE · VEHICLE GUIDE</div>
-          <h1 className="text-[2.35rem] font-extrabold leading-tight text-foreground">{c.startTitle}</h1>
-          <p className="mt-4 text-lg font-medium leading-relaxed text-foreground">{c.startLead}</p>
-          <p className="mt-2 text-base leading-relaxed text-muted-foreground">{c.startNote}</p>
-          <div className="my-8 flex flex-1 items-center justify-center overflow-hidden rounded-lg bg-surface"><img src={startImage.url} alt="차를 타고 있는 토더기" className="h-auto max-h-[340px] w-full object-contain mix-blend-multiply" /></div>
+          <div className="mb-5 inline-flex w-fit items-center gap-2 rounded-full bg-secondary px-3 py-1.5 text-xs font-bold tracking-wide text-secondary-foreground"><span className="h-2 w-2 rounded-full bg-gold" />VEHICLE REGISTRATION</div>
+          <h1 className="text-[2.2rem] font-extrabold leading-tight text-foreground">{c.startTitle}</h1>
+          <div className="my-8 flex flex-1 items-center justify-center overflow-hidden rounded-2xl bg-surface"><img src={startImage.url} alt="차를 타고 있는 토더기" className="h-auto max-h-[320px] w-full object-contain mix-blend-multiply" /></div>
           <Primary onClick={() => go('language')}>START</Primary>
         </>}
         {step === 'language' && <>
           <p className="mb-2 text-xs font-bold uppercase text-primary">LANGUAGE</p><h1 className="mb-8 text-[1.9rem] font-extrabold leading-snug">{c.language}</h1>
-          <div className="space-y-3">{languages.map(lang => <Choice key={lang} title={languageNames[lang]} onClick={() => { setLanguage(lang); go('service'); }} />)}</div>
+          <div className="space-y-3">{languages.map((lang, i) => <Choice key={lang} i={i} title={languageNames[lang]} onClick={() => { setLanguage(lang); go('service'); }} />)}</div>
         </>}
         {step === 'service' && <>
           <p className="mb-2 text-xs font-bold uppercase text-primary">01 · SERVICE</p><h1 className="mb-8 text-[1.9rem] font-extrabold leading-snug">{c.service}</h1>
-          <div className="space-y-4"><Choice title={c.transfer} detail={c.transferDetail} onClick={() => { if (service !== 'transfer') { setService('transfer'); setVisitor(null); setInsurance(null); } setDocIndex(0); go('visitor'); }} /><Choice title={c.number} detail={c.numberDetail} onClick={() => { if (service !== 'number') { setService('number'); setVisitor(null); setInsurance(null); } setDocIndex(0); go('example'); }} /></div>
+          <div className="space-y-4"><Choice title={c.transfer} detail={c.transferDetail} onClick={() => { if (service !== 'transfer') { setService('transfer'); setVisitor(null); setInsurance(null); setKnowsAddress(null); } setDocIndex(0); go('visitor'); }} /><Choice i={1} title={c.number} detail={c.numberDetail} onClick={() => { if (service !== 'number') { setService('number'); setVisitor(null); setInsurance(null); setKnowsAddress(null); } setDocIndex(0); go('example'); }} /></div>
         </>}
         {step === 'visitor' && <>
           <p className="mb-2 text-xs font-bold uppercase text-primary">02 · VISIT</p><h1 className="mb-7 text-[1.9rem] font-extrabold leading-snug">{c.visitor}</h1>
-          <div className="space-y-3"><Choice title={c.together} onClick={() => { setVisitor('together'); setDocIndex(0); go('insurance'); }} /><Choice title={c.seller} onClick={() => { setVisitor('seller'); setDocIndex(0); go('preparation'); }} /><Choice title={c.buyer} onClick={() => { setVisitor('buyer'); setDocIndex(0); go('preparation'); }} /></div>
-          <div className="mt-6 space-y-2 rounded-lg border-2 border-primary bg-surface px-4 py-4">{c.roles.split(' · ').map(r => <p key={r} className="text-lg font-bold leading-snug text-foreground">{r}</p>)}</div>
+          <div className="space-y-3"><Choice title={c.together} onClick={() => { setVisitor('together'); setDocIndex(0); go('insurance'); }} /><Choice i={1} title={c.seller} onClick={() => { setVisitor('seller'); setDocIndex(0); go('preparation'); }} /><Choice i={2} title={c.buyer} onClick={() => { setVisitor('buyer'); setDocIndex(0); go('preparation'); }} /></div>
+          <div className="mt-6 space-y-2 rounded-2xl border border-gold/60 bg-cream px-5 py-4">{[c.roleSeller, c.roleBuyer].map(r => <p key={r} className="text-lg font-bold leading-snug text-foreground">{r}</p>)}</div>
         </>}
         {step === 'preparation' && <>
-          <p className="mb-2 text-xs font-bold uppercase text-primary">03 · PREPARATION</p><h1 className="text-[1.9rem] font-extrabold leading-snug">{visitor === 'seller' ? c.sellerNeed : c.buyerNeed}</h1>
-          {visitor === 'seller' ? <div className="mt-8 border-l-4 border-primary bg-surface px-5 py-5"><p className="mb-3 font-bold">{c.sellerDocs}</p><ol className="list-inside list-decimal space-y-2 text-[1rem] leading-relaxed"><li>{c.transferForm}</li><li>{c.certificate}</li><li>{c.power}</li></ol></div> : <p className="mt-6 text-base leading-relaxed text-muted-foreground">{c.buyerNote}</p>}
+          <p className="mb-2 text-xs font-bold uppercase text-primary">03 · PREPARATION</p><h1 className="text-[1.75rem] font-extrabold leading-snug">{visitor === 'seller' ? c.sellerNeed : c.buyerNeed}</h1>
+          {visitor === 'buyer' && <p className="mt-3 text-base font-medium text-muted-foreground">{c.buyerNeedNote}</p>}
+          <div className="mt-8 rounded-2xl border border-gold/50 bg-cream px-5 py-5"><p className="mb-3 text-lg font-bold">{c.docsTitle}</p><ol className="list-inside list-decimal space-y-2 text-lg font-semibold leading-snug"><li>{c.transferForm}</li><li>{c.certificate}</li></ol></div>
           <div className="mt-auto pt-12"><Primary onClick={() => go('insurance')}>{c.understood}</Primary></div>
         </>}
         {step === 'insurance' && <>
           <p className="mb-2 text-xs font-bold uppercase text-primary">03 · INSURANCE</p><h1 className="mb-8 text-[1.9rem] font-extrabold leading-snug">{c.insurance}</h1>
-          <div className="space-y-3"><Choice title={c.yes} onClick={() => { setInsurance(true); go('example'); }} /><Choice title={c.no} onClick={() => { setInsurance(false); go('insuranceNote'); }} /></div>
+          <div className="space-y-3"><Choice title={c.yes} onClick={() => { setInsurance(true); go('address'); }} /><Choice i={1} title={c.no} onClick={() => { setInsurance(false); go('insuranceNote'); }} /></div>
         </>}
         {step === 'insuranceNote' && <>
           <p className="mb-2 text-xs font-bold uppercase text-primary">03 · INSURANCE</p><h1 className="text-[1.9rem] font-extrabold leading-snug">{c.insuranceNote}</h1>
-          <p className="mt-6 text-base leading-relaxed text-muted-foreground">{c.insuranceDisclaimer}</p>
-          <div className="mt-auto pt-12"><Primary onClick={() => go('example')}>{c.continue}</Primary></div>
+          <div className="mt-auto pt-12"><Primary onClick={() => go('address')}>{c.continue}</Primary></div>
+        </>}
+        {step === 'address' && <>
+          <p className="mb-2 text-xs font-bold uppercase text-primary">04 · ADDRESS</p><h1 className="mb-8 text-[1.75rem] font-extrabold leading-snug">{c.address}</h1>
+          <div className="space-y-3"><Choice title={c.addressYes} onClick={() => { setKnowsAddress(true); setDocIndex(0); go('example'); }} /><Choice i={1} title={c.addressNo} onClick={() => { setKnowsAddress(false); go('addressNote'); }} /></div>
+        </>}
+        {step === 'addressNote' && <>
+          <p className="mb-2 text-xs font-bold uppercase text-primary">04 · ADDRESS</p><h1 className="text-[1.9rem] font-extrabold leading-snug">{c.addressTitle}</h1>
+          <p className="mt-5 text-lg font-semibold leading-snug">{c.addressBody}</p>
+          <p className="mt-4 rounded-xl bg-cream px-4 py-3 text-base font-medium">{c.addressHelp}</p>
+          <div className="mt-auto pt-12"><Primary onClick={() => { setDocIndex(0); go('example'); }}>{c.addressDone}</Primary></div>
         </>}
         {step === 'example' && <>
-          <div className="mb-5 flex items-start justify-between gap-3"><div><p className="mb-2 text-xs font-bold uppercase text-primary">{service === 'number' ? '02' : '04'} · FORMS</p><h1 className="text-[1.8rem] font-extrabold leading-snug">{c.examples}</h1></div><img src={applicationImage.url} alt="신청서를 들고 안내하는 토더기" className="h-16 w-20 shrink-0 object-contain mix-blend-multiply" /></div>
+          <div className="mb-5 flex items-start justify-between gap-3"><div><p className="mb-2 text-xs font-bold uppercase text-primary">{service === 'number' ? '02' : '05'} · FORMS</p><h1 className="text-[1.8rem] font-extrabold leading-snug">{c.examples}</h1></div><img src={applicationImage.url} alt="신청서를 들고 안내하는 토더기" className="h-16 w-20 shrink-0 object-contain mix-blend-multiply" /></div>
           <p className="mb-5 text-lg font-semibold leading-snug text-foreground">{c.exampleLead}</p>
-          <div className="mb-4 flex items-center justify-between gap-3"><span className="min-w-0 text-lg font-bold leading-snug">{c[currentDoc]}</span><span className="shrink-0 rounded-full bg-secondary px-3 py-1 text-xs font-semibold text-secondary-foreground">{docIndex + 1} / {selectedDocs.length}</span></div>
-          {visitor === 'buyer' && docIndex === 0 && <p className="mb-4 border-l-4 border-primary bg-surface px-4 py-3 text-base font-semibold leading-relaxed">{c.buyerNeed}</p>}
-          <Button variant="paper" size="paper" onClick={openZoom} className="group w-full overflow-hidden" aria-label={`${c[currentDoc]} ${c.zoom}`}><div className="w-full [container-type:inline-size]"><FormWithLabels doc={currentDoc} language={language} alt={imageAlt} /></div></Button>
+          <div className="mb-4 flex items-center justify-between gap-3"><span className="min-w-0 text-lg font-bold leading-snug">{docName(currentDoc)}</span><span className="shrink-0 rounded-full bg-secondary px-3 py-1 text-xs font-semibold text-secondary-foreground">{docIndex + 1} / {selectedDocs.length}</span></div>
+          <Button variant="paper" size="paper" onClick={openZoom} className="group w-full overflow-hidden" aria-label={`${docName(currentDoc)} ${c.zoom}`}><div className="w-full [container-type:inline-size]"><FormWithLabels doc={currentDoc} language={language} alt={imageAlt} /></div></Button>
           <div className="mt-3 flex flex-wrap gap-2"><Button variant="outline" onClick={openZoom} className="h-11 text-base"><ZoomIn />{c.zoom}</Button></div>
           <div className="mt-8"><Primary onClick={() => { if (docIndex < selectedDocs.length - 1) { setDocIndex(i => i + 1); window.scrollTo({ top: 0, behavior: 'instant' }); } else go('finish'); }}>{docIndex < selectedDocs.length - 1 ? c.nextDoc : c.afterWrite}</Primary></div>
         </>}
         {step === 'finish' && <>
-          <p className="mb-2 text-xs font-bold uppercase text-primary">{service === 'number' ? '03' : '05'} · NEXT</p><h1 className="mb-4 text-[1.9rem] font-extrabold leading-snug">{c.finishTitle}</h1>
-          <p className="text-xl font-bold leading-relaxed">{c.finishLead}</p><p className="mt-3 text-base leading-relaxed text-muted-foreground">{c.finishNote}</p>
-          <img src={ticketImage.url} alt="번호표 발급기 옆에서 안내하는 토더기" className="mx-auto my-6 h-auto max-h-52 w-full object-contain mix-blend-multiply" />
-          <ol className="space-y-0 border-l-2 border-border pl-5">{[c.stepExample, c.stepWrite, c.stepTicket, c.stepCounter].map((text, i) => <li key={i} className="relative pb-5 text-base font-semibold last:pb-0 before:absolute before:-left-[27px] before:top-1 before:h-3 before:w-3 before:rounded-full before:bg-primary"><span className="mr-3 text-primary">0{i + 1}</span>{text}</li>)}</ol>
-          <img src={counterImage.url} alt="창구 직원에게 안내받는 토더기" className="mx-auto mt-7 h-auto max-h-28 w-full object-contain mix-blend-multiply" />
-          <div className="mt-8"><Button variant="outline" size="guide" onClick={reset} className="w-full"><RotateCcw />{c.restart}</Button></div>
+          <p className="mb-2 text-xs font-bold uppercase text-primary">{service === 'number' ? '03' : '06'} · NEXT</p><h1 className="mb-5 text-[1.9rem] font-extrabold leading-snug">{c.finishTitle}</h1>
+          <p className="text-xl font-bold leading-snug">{c.finishLead}</p><p className="mt-3 text-base text-muted-foreground">{c.finishNote}</p>
+          <div className="my-8 flex flex-1 items-center justify-center rounded-2xl bg-surface"><img src={counterImage.url} alt="창구 직원에게 안내받는 토더기" className="h-auto max-h-64 w-full object-contain mix-blend-multiply" /></div>
+          <Button variant="outline" size="guide" onClick={reset} className="w-full rounded-2xl"><RotateCcw />{c.restart}</Button>
         </>}
       </main>
     </div>
-    {zoomed && <div role="dialog" aria-modal="true" aria-label={`${c[currentDoc]} ${c.zoom}`} className="fixed inset-0 z-50 flex flex-col bg-background">
-      <div className="flex items-center justify-between gap-2 border-b border-border bg-card px-4 py-3"><span className="min-w-0 truncate text-base font-bold">{c[currentDoc]}</span><Button variant="ghost" size="icon" aria-label={c.close} onClick={() => setZoomed(false)}><X /></Button></div>
+    {zoomed && <div role="dialog" aria-modal="true" aria-label={`${docName(currentDoc)} ${c.zoom}`} className="fixed inset-0 z-50 flex flex-col bg-background">
+      <div className="flex items-center justify-between gap-2 border-b border-border bg-card px-4 py-3"><span className="min-w-0 truncate text-base font-bold">{docName(currentDoc)}</span><Button variant="ghost" size="icon" aria-label={c.close} onClick={() => setZoomed(false)}><X /></Button></div>
       <div className="relative flex flex-1 touch-none items-center justify-center overflow-hidden bg-muted" onPointerDown={e => { drag.current = { x: e.clientX, y: e.clientY, startX: offset.x, startY: offset.y }; e.currentTarget.setPointerCapture(e.pointerId); }} onPointerMove={e => { if (drag.current) setOffset({ x: drag.current.startX + e.clientX - drag.current.x, y: drag.current.startY + e.clientY - drag.current.y }); }} onPointerUp={() => { drag.current = null; }} onPointerCancel={() => { drag.current = null; }}><div className="w-[min(100%,calc((100dvh-140px)*0.7077))] [container-type:inline-size]" style={{ transform: `translate(${offset.x}px, ${offset.y}px) scale(${zoom})` }}><FormWithLabels doc={currentDoc} language={language} alt={imageAlt} onDoubleClick={() => { setZoom(z => z >= 3 ? 1 : 2); setOffset({ x: 0, y: 0 }); }} /></div></div>
       <div className="flex items-center justify-center gap-4 border-t border-border bg-card p-3"><Button variant="outline" size="icon" aria-label={c.zoomOut} onClick={() => setZoom(z => Math.max(1, +(z - .5).toFixed(1)))}><ZoomOut /></Button><span className="min-w-14 text-center text-sm font-bold tabular-nums">{Math.round(zoom * 100)}%</span><Button variant="outline" size="icon" aria-label={c.zoomIn} onClick={() => setZoom(z => Math.min(4, +(z + .5).toFixed(1)))}><ZoomIn /></Button></div>
     </div>}
