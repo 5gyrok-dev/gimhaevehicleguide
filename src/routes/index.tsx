@@ -6,6 +6,7 @@ import { documentFields, documentTitle, fieldText, languageNames, languages, pre
 import startImage from '@/assets/todugi_start_car_transparent.png.asset.json';
 import applicationImage from '@/assets/todugi_application_guide_transparent.png.asset.json';
 import counterImage from '@/assets/todugi_counter_guide_transparent.png.asset.json';
+import counterImage from '@/assets/todugi_ticket_guide3_transparent.png.asset.json';
 import transferBothPreview from '@/assets/form_transfer_both.png.asset.json';
 import transferSellerPreview from '@/assets/form_transfer_seller.png.asset.json';
 import certificatePreview from '@/assets/form_certificate.png.asset.json';
