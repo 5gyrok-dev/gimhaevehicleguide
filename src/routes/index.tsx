@@ -170,7 +170,7 @@ function Guide() {
         {step === 'finish' && <>
           <p className="mb-2 text-xs font-bold uppercase text-primary">{service === 'number' ? '03' : '07'} · FINAL STEP</p><h1 className="mb-5 mt-16 whitespace-pre-line text-center text-[1.7rem] font-extrabold leading-snug sm:text-[1.9rem]">{c.finishLead}</h1>
           <p className="mt-3 text-center text-base text-muted-foreground">{c.finishNote}</p>
-          <div className="my-8 flex items-center justify-center"><img src={counterImage.url} alt="번호표 발급 기계를 가리키는 토더기" className="h-auto max-h-64 w-full object-contain" /></div>
+          <div className="my-8 flex items-center justify-center"><img src={counterImage.url} alt="번호표 발급 기계를 가리키는 토더기" className="h-auto max-h-64 w-full -translate-x-[5.5%] object-contain" /></div>
           <Button variant="guide" size="guide" onClick={reset} className="w-full justify-center text-center"><span className="flex items-center gap-2"><RotateCcw aria-hidden="true" />{c.restart}</span></Button>
           <div className="flex-1" />
         </>}
