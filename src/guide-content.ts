@@ -7,7 +7,7 @@ const copy = {
     app: '김해시 외국인 자동차 등록 안내 서비스', startTitle: '자동차 등록 안내', language: '언어를 선택해주세요',
     service: '어떤 업무를 하시나요?', transfer: '명의 이전', transferDetail: '차량 소유자를 변경하는 경우', number: '번호 변경', numberDetail: '자동차등록번호를 변경하는 경우',
     visitor: '오늘 누가 함께 방문했나요?', together: '양도인 + 양수인 함께 방문', seller: '양도인만 방문', buyer: '양수인만 방문', representative: '대리인만 방문', representativeDetail: '양도인·양수인 모두 방문하지 못하는 경우',
-    representativeNeed: '양도인의 자동차 매도용 본인서명사실확인서와 양수인의 외국인등록증과 도장을 준비하세요',
+    representativeNeed: '양도인의 자동차 매도용 본인서명사실확인서\n양수인의 외국인등록증과 도장\n준비하세요',
     roleSeller: '양도인 = 차량을 파는 사람', roleBuyer: '양수인 = 차량을 사는 사람',
     sellerNeed: '양수인의 외국인등록증과    \n도장을 준비해주세요', buyerNeed: '양도인의 자동차매도용\n본인서명사실확인서를 준비해주세요', buyerNeedNote: '행정복지센터에서 발급할 수 있어요',
     docsTitle: '작성할 서류', understood: '확인했습니다',
