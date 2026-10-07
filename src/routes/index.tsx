@@ -85,7 +85,7 @@ function Guide() {
   const imageAlt = `${docName(currentDoc)} — ${c.original}`;
 
   const Primary = ({ children, onClick }: { children: React.ReactNode; onClick: () => void }) => <Button size="guide" variant="guide" onClick={onClick} className="w-full justify-between text-left"><span>{children}</span><ArrowRight aria-hidden="true" /></Button>;
-  const Choice = ({ title, detail, onClick, i = 0 }: { title: string; detail?: string; onClick: () => void; i?: number }) => <Button variant="choice" size="choice" onClick={onClick} className="guide-stagger w-full justify-between text-left" style={{ animationDelay: `${i * 60}ms` }}><span className="min-w-0 flex-1 whitespace-normal"><span className="block text-xl font-bold leading-snug">{title}</span>{detail && <span className="mt-1 block text-base font-normal leading-snug text-muted-foreground">{detail}</span>}</span><ChevronRight aria-hidden="true" className="ml-3 shrink-0" /></Button>;
+  const Choice = ({ title, detail, onClick, i = 0 }: { title: string; detail?: string; onClick: () => void; i?: number }) => <Button variant="choice" size="choice" onClick={onClick} className="guide-stagger w-full justify-between text-left" style={{ animationDelay: `${i * 60}ms` }}><span className="min-w-0 flex-1 whitespace-normal"><span className="block text-xl font-bold leading-snug">{title}</span>{detail && <span className="mt-1 block text-xs font-normal leading-snug text-muted-foreground">{detail}</span>}</span><ChevronRight aria-hidden="true" className="ml-3 shrink-0" /></Button>;
 
   return <div className="min-h-screen bg-app">
     <div className="mx-auto flex min-h-screen w-full max-w-[560px] flex-col bg-app shadow-[0_8px_48px_var(--shadow-app)]">
@@ -121,7 +121,7 @@ function Guide() {
           <div className="mt-auto flex justify-center pt-8"><img src={startImage.url} alt="" aria-hidden="true" className="guide-enter h-32 w-auto -translate-x-[7.5%] object-contain" /></div>
         </>}
         {step === 'preparation' && <>
-          <p className="mb-2 text-xs font-bold uppercase text-primary">03 · PREPARATION</p><h1 className={`whitespace-pre-line font-extrabold leading-snug ${visitor === 'seller' ? 'text-[1.7rem] sm:text-[1.9rem]' : visitor === 'representative' ? 'text-[1rem] sm:text-[1.35rem]' : 'text-[1.35rem] sm:text-[1.9rem]'} ${visitor === 'buyer' ? 'mb-4' : 'mb-7'}`}>{visitor === 'representative' ? c.representativeNeed : visitor === 'seller' ? c.sellerNeed : c.buyerNeed}</h1>
+          <p className="mb-2 text-xs font-bold uppercase text-primary">03 · PREPARATION</p><h1 className={`whitespace-pre-line font-extrabold leading-snug ${visitor === 'seller' ? 'text-[1.7rem] sm:text-[1.9rem]' : visitor === 'representative' ? 'text-[1.15rem] sm:text-[1.5rem]' : 'text-[1.35rem] sm:text-[1.9rem]'} ${visitor === 'buyer' ? 'mb-4' : 'mb-7'}`}>{visitor === 'representative' ? c.representativeNeed : visitor === 'seller' ? c.sellerNeed : c.buyerNeed}</h1>
           {visitor === 'buyer' && <p className="text-base font-medium text-muted-foreground">{c.buyerNeedNote}</p>}
           <div className="mt-8 rounded-2xl border border-primary/30 bg-cream px-5 py-5"><p className="mb-3 text-lg font-bold">{c.docsTitle}</p><ol className="list-inside list-decimal space-y-2 text-lg font-semibold leading-snug"><li>{c.transferForm}</li><li>{c.certificate}</li></ol></div>
           <div className="mt-auto flex justify-center pt-8"><img src={applicationImage.url} alt="" aria-hidden="true" className="guide-enter h-32 w-auto object-contain" /></div>
