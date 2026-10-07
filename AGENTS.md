@@ -12,3 +12,4 @@
 - Keep guide copy and pink-highlighted field translations centralized in `src/guide-content.ts` so each language and document remains consistent.
 - Use the supplied PDF assets unchanged as originals and their rendered first-page previews only for touch zoom; never recreate or modify the official forms.
 - Keep navigation choices in client component state; the guide does not collect or persist personal information.
+- Give each visitor-specific transfer form its own document key and asset mapping so adding a branch cannot replace another visitor's official form.
