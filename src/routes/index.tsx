@@ -85,7 +85,7 @@ function Guide() {
   const imageAlt = `${docName(currentDoc)} — ${c.original}`;
 
   const Primary = ({ children, onClick }: { children: React.ReactNode; onClick: () => void }) => <Button size="guide" variant="guide" onClick={onClick} className="w-full justify-between text-left"><span>{children}</span><ArrowRight aria-hidden="true" /></Button>;
-  const Choice = ({ title, detail, onClick, i = 0 }: { title: string; detail?: string; onClick: () => void; i?: number }) => <Button variant="choice" size="choice" onClick={onClick} className="guide-stagger w-full justify-between text-left" style={{ animationDelay: `${i * 60}ms` }}><span className="min-w-0 flex-1 whitespace-normal"><span className="block text-xl font-bold leading-snug">{title}</span>{detail && <span className="mt-1 block text-base font-normal leading-snug text-muted-foreground">{detail}</span>}</span><ChevronRight aria-hidden="true" className="ml-3 shrink-0" /></Button>;
+  const Choice = ({ title, detail, onClick, i = 0 }: { title: string; detail?: string; onClick: () => void; i?: number }) => <Button variant="choice" size="choice" onClick={onClick} className="guide-stagger w-full justify-between text-left" style={{ animationDelay: `${i * 60}ms` }}><span className="min-w-0 flex-1 whitespace-normal"><span className="block text-xl font-bold leading-snug">{title}</span>{detail && <span className="mt-1 block text-xs font-normal leading-snug text-muted-foreground">{detail}</span>}</span><ChevronRight aria-hidden="true" className="ml-3 shrink-0" /></Button>;
 
   return <div className="min-h-screen bg-app">
     <div className="mx-auto flex min-h-screen w-full max-w-[560px] flex-col bg-app shadow-[0_8px_48px_var(--shadow-app)]">
