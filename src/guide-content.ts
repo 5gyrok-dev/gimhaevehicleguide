@@ -6,7 +6,8 @@ const copy = {
   ko: {
     app: '김해시 외국인 자동차 등록 안내 서비스', startTitle: '자동차 등록 안내', language: '언어를 선택해주세요',
     service: '어떤 업무를 하시나요?', transfer: '명의 이전', transferDetail: '차량 소유자를 변경하는 경우', number: '번호 변경', numberDetail: '자동차등록번호를 변경하는 경우',
-    visitor: '오늘 누가 함께 방문했나요?', together: '양도인 + 양수인 함께 방문', seller: '양도인만 방문', buyer: '양수인만 방문',
+    visitor: '오늘 누가 함께 방문했나요?', together: '양도인 + 양수인 함께 방문', seller: '양도인만 방문', buyer: '양수인만 방문', representative: '대리인만 방문', representativeDetail: '양도인·양수인 모두 방문하지 못하는 경우',
+    representativeNeed: '양도인의 자동차 매도용 본인서명사실확인서와 양수인의 외국인등록증과 도장을 준비하세요',
     roleSeller: '양도인 = 차량을 파는 사람', roleBuyer: '양수인 = 차량을 사는 사람',
     sellerNeed: '양수인의 외국인등록증과    \n도장을 준비해주세요', buyerNeed: '양도인의 자동차매도용\n본인서명사실확인서를 준비해주세요', buyerNeedNote: '행정복지센터에서 발급할 수 있어요',
     docsTitle: '작성할 서류', understood: '확인했습니다',
@@ -24,7 +25,8 @@ const copy = {
   en: {
     app: 'Gimhae Vehicle Registration Guide', startTitle: 'Vehicle Registration Guide', language: 'Choose your language',
     service: 'What do you need today?', transfer: 'Transfer ownership', transferDetail: 'Change the vehicle owner', number: 'Change vehicle number', numberDetail: 'Change the vehicle registration number',
-    visitor: 'Who came today?', together: 'Seller + buyer together', seller: 'Seller only', buyer: 'Buyer only',
+    visitor: 'Who came today?', together: 'Seller + buyer together', seller: 'Seller only', buyer: 'Buyer only', representative: 'Representative only', representativeDetail: 'Neither the seller nor the buyer can attend',
+    representativeNeed: 'Bring the seller’s Signature Verification Certificate for Vehicle Sale, and the buyer’s alien registration card and seal',
     roleSeller: 'Seller = person selling the car', roleBuyer: 'Buyer = person buying the car',
     sellerNeed: 'Bring the buyer’s alien registration card and seal', buyerNeed: 'Bring the Seller’s Signature Verification Certificate for Vehicle Sale', buyerNeedNote: 'Available at a local community service center',
     docsTitle: 'Forms to fill out', understood: 'I understand',
@@ -42,7 +44,8 @@ const copy = {
   zh: {
     app: '金海市外国人汽车登记指南', startTitle: '汽车登记指南', language: '请选择语言',
     service: '您要办理什么业务？', transfer: '过户', transferDetail: '变更车辆所有人', number: '更换车牌号码', numberDetail: '变更车辆登记号码',
-    visitor: '今天谁来办理？', together: '卖方 + 买方一同到场', seller: '仅卖方到场', buyer: '仅买方到场',
+    visitor: '今天谁来办理？', together: '卖方 + 买方一同到场', seller: '仅卖方到场', buyer: '仅买方到场', representative: '仅代理人到场', representativeDetail: '卖方和买方均无法到场的情况',
+    representativeNeed: '请准备卖方车辆出售用本人签名事实确认书，以及买方的外国人登录证和印章',
     roleSeller: '卖方 = 卖车的人', roleBuyer: '买方 = 买车的人',
     sellerNeed: '请准备买方的外国人登录证和印章', buyerNeed: '请准备卖方车辆出售用签名确认书', buyerNeedNote: '可在行政福利中心办理',
     docsTitle: '需填写的材料', understood: '我知道了',
@@ -60,7 +63,8 @@ const copy = {
   vi: {
     app: 'Hướng dẫn đăng ký xe tại Gimhae', startTitle: 'Hướng dẫn đăng ký xe', language: 'Chọn ngôn ngữ',
     service: 'Bạn cần làm thủ tục gì?', transfer: 'Sang tên xe', transferDetail: 'Đổi chủ sở hữu xe', number: 'Đổi số xe', numberDetail: 'Đổi số đăng ký xe',
-    visitor: 'Hôm nay ai đến?', together: 'Người bán + người mua', seller: 'Chỉ người bán', buyer: 'Chỉ người mua',
+    visitor: 'Hôm nay ai đến?', together: 'Người bán + người mua', seller: 'Chỉ người bán', buyer: 'Chỉ người mua', representative: 'Chỉ người đại diện', representativeDetail: 'Cả người bán và người mua đều không thể đến',
+    representativeNeed: 'Hãy mang Giấy xác nhận chữ ký dùng để bán xe của người bán, cùng thẻ đăng ký người nước ngoài và con dấu của người mua',
     roleSeller: 'Người bán = người bán xe', roleBuyer: 'Người mua = người mua xe',
     sellerNeed: 'Hãy mang thẻ người nước ngoài và con dấu của người mua', buyerNeed: 'Hãy mang Giấy xác nhận chữ ký của người bán xe', buyerNeedNote: 'Cấp tại trung tâm hành chính phường',
     docsTitle: 'Giấy tờ cần điền', understood: 'Đã hiểu',
@@ -78,7 +82,8 @@ const copy = {
   uz: {
     app: 'Gimhae avtomobil ro‘yxati yo‘riqnomasi', startTitle: 'Avtomobil ro‘yxati', language: 'Tilni tanlang',
     service: 'Qaysi xizmat kerak?', transfer: 'Egasini o‘zgartirish', transferDetail: 'Avtomobil egasini o‘zgartirish', number: 'Raqamni o‘zgartirish', numberDetail: 'Ro‘yxat raqamini o‘zgartirish',
-    visitor: 'Bugun kim keldi?', together: 'Sotuvchi + xaridor', seller: 'Faqat sotuvchi', buyer: 'Faqat xaridor',
+    visitor: 'Bugun kim keldi?', together: 'Sotuvchi + xaridor', seller: 'Faqat sotuvchi', buyer: 'Faqat xaridor', representative: 'Faqat vakil', representativeDetail: 'Sotuvchi ham, xaridor ham kela olmaydigan holat',
+    representativeNeed: 'Sotuvchining avtomobil sotish uchun imzosini tasdiqlovchi hujjatini hamda xaridorning chet ellik ro‘yxat kartasi va muhrini olib keling',
     roleSeller: 'Sotuvchi = mashinani sotuvchi', roleBuyer: 'Xaridor = mashinani oluvchi',
     sellerNeed: 'Xaridorning ID kartasi va muhrini olib keling', buyerNeed: 'Avtomobil sotuvchining imzosini tasdiqlovchi hujjatni olib keling', buyerNeedNote: 'Mahalliy xizmat markazida beriladi',
     docsTitle: 'To‘ldiriladigan hujjatlar', understood: 'Tushundim',
@@ -119,8 +124,8 @@ export const fieldLabels = {
 export type FieldKey = keyof typeof fieldLabels;
 export const fieldText = (field: FieldKey, lang: Language) => fieldLabels[field]?.[languages.indexOf(lang)] ?? fieldLabels[field]?.[0] ?? '';
 
-export type DocumentKey = 'transferBoth' | 'transferSeller' | 'certificate' | 'numberForm';
-export const documentTitle: Record<DocumentKey, CopyKey> = { transferBoth: 'transferForm', transferSeller: 'transferForm', certificate: 'certificate', numberForm: 'numberForm' };
+export type DocumentKey = 'transferBoth' | 'transferSeller' | 'transferRepresentative' | 'certificate' | 'numberForm';
+export const documentTitle: Record<DocumentKey, CopyKey> = { transferBoth: 'transferForm', transferSeller: 'transferForm', transferRepresentative: 'transferForm', certificate: 'certificate', numberForm: 'numberForm' };
 /** Label anchors on the 920x1300 preview images, placed in blank space beside each highlighted field. a='l': label ends at x. */
 export type FieldMarker = { f: FieldKey; x: number; y: number; a?: 'l' | 'r' };
 export const previewSize = { w: 920, h: 1300 };
@@ -133,6 +138,9 @@ const transferCommon: FieldMarker[] = [
 export const documentFields: Record<DocumentKey, FieldMarker[]> = {
   transferBoth: transferCommon,
   transferSeller: [...transferCommon,
+    { f: 'buyer', x: 540, y: 838 }, { f: 'name', x: 380, y: 951 }, { f: 'seal', x: 628, y: 951 }, { f: 'id', x: 380, y: 985 }, { f: 'address', x: 380, y: 1018 },
+  ],
+  transferRepresentative: [...transferCommon,
     { f: 'buyer', x: 540, y: 838 }, { f: 'name', x: 380, y: 951 }, { f: 'seal', x: 628, y: 951 }, { f: 'id', x: 380, y: 985 }, { f: 'address', x: 380, y: 1018 },
   ],
   certificate: [

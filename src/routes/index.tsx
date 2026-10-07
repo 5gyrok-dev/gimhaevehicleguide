@@ -8,6 +8,7 @@ import applicationImage from '@/assets/todugi_application_guide_transparent.png.
 import counterImage from '@/assets/todugi_ticket_guide3_transparent.png.asset.json';
 import transferBothPreview from '@/assets/form_transfer_both.png.asset.json';
 import transferSellerPreview from '@/assets/form_transfer_seller.png.asset.json';
+import transferRepresentativePreview from '@/assets/form_transfer_representative.png.asset.json';
 import certificatePreview from '@/assets/form_certificate.png.asset.json';
 import numberPreview from '@/assets/form_number_form.png.asset.json';
 
@@ -25,10 +26,11 @@ export const Route = createFileRoute('/')({
 
 type Step = 'start' | 'language' | 'service' | 'visitor' | 'preparation' | 'insurance' | 'insuranceNote' | 'check' | 'checkNote' | 'address' | 'addressNote' | 'example' | 'finish';
 type Service = 'transfer' | 'number';
-type Visitor = 'together' | 'seller' | 'buyer';
+type Visitor = 'together' | 'seller' | 'buyer' | 'representative';
 const docs: Record<DocumentKey, { preview: string }> = {
   transferBoth: { preview: transferBothPreview.url },
   transferSeller: { preview: transferSellerPreview.url },
+  transferRepresentative: { preview: transferRepresentativePreview.url },
   certificate: { preview: certificatePreview.url },
   numberForm: { preview: numberPreview.url },
 };
@@ -54,7 +56,7 @@ function Guide() {
   const [offset, setOffset] = useState({ x: 0, y: 0 });
   const drag = useRef<{ x: number; y: number; startX: number; startY: number } | null>(null);
   const c = t(language);
-  const selectedDocs: DocumentKey[] = service === 'number' ? ['numberForm'] : visitor === 'seller' ? ['transferSeller', 'certificate'] : ['transferBoth', 'certificate'];
+  const selectedDocs: DocumentKey[] = service === 'number' ? ['numberForm'] : visitor === 'representative' ? ['transferRepresentative', 'certificate'] : visitor === 'seller' ? ['transferSeller', 'certificate'] : ['transferBoth', 'certificate'];
   const currentDoc: DocumentKey = selectedDocs[docIndex] ?? 'transferBoth';
   const docName = (d: DocumentKey) => c[documentTitle[d]];
   const exampleSteps: Step[] = selectedDocs.map(() => 'example');
@@ -114,12 +116,12 @@ function Guide() {
         </>}
         {step === 'visitor' && <>
           <p className="mb-2 text-xs font-bold uppercase text-primary">02 · VISIT</p><h1 className="mb-7 whitespace-nowrap text-[1.55rem] font-extrabold leading-snug">{c.visitor}</h1>
-          <div className="space-y-3"><Choice title={c.together} onClick={() => { setVisitor('together'); setDocIndex(0); go('insurance'); }} /><Choice i={1} title={c.seller} onClick={() => { setVisitor('seller'); setDocIndex(0); go('preparation'); }} /><Choice i={2} title={c.buyer} onClick={() => { setVisitor('buyer'); setDocIndex(0); go('preparation'); }} /></div>
+          <div className="space-y-3"><Choice title={c.together} onClick={() => { setVisitor('together'); setDocIndex(0); go('insurance'); }} /><Choice i={1} title={c.seller} onClick={() => { setVisitor('seller'); setDocIndex(0); go('preparation'); }} /><Choice i={2} title={c.buyer} onClick={() => { setVisitor('buyer'); setDocIndex(0); go('preparation'); }} /><Choice i={3} title={c.representative} detail={c.representativeDetail} onClick={() => { setVisitor('representative'); setDocIndex(0); go('preparation'); }} /></div>
           <div className="mt-6 space-y-2 rounded-2xl border border-primary/35 bg-cream px-5 py-4 text-center">{[c.roleSeller, c.roleBuyer].map(r => <p key={r} className="text-lg font-bold leading-snug text-foreground">{r}</p>)}</div>
           <div className="mt-auto flex justify-center pt-8"><img src={startImage.url} alt="" aria-hidden="true" className="guide-enter h-32 w-auto -translate-x-[7.5%] object-contain" /></div>
         </>}
         {step === 'preparation' && <>
-          <p className="mb-2 text-xs font-bold uppercase text-primary">03 · PREPARATION</p><h1 className={`whitespace-pre-line font-extrabold leading-snug sm:text-[1.9rem] ${visitor === 'seller' ? 'text-[1.7rem]' : 'text-[1.35rem]'} ${visitor === 'buyer' ? 'mb-4' : 'mb-7'}`}>{visitor === 'seller' ? c.sellerNeed : c.buyerNeed}</h1>
+          <p className="mb-2 text-xs font-bold uppercase text-primary">03 · PREPARATION</p><h1 className={`whitespace-pre-line font-extrabold leading-snug sm:text-[1.9rem] ${visitor === 'seller' ? 'text-[1.7rem]' : 'text-[1.35rem]'} ${visitor === 'buyer' ? 'mb-4' : 'mb-7'}`}>{visitor === 'representative' ? c.representativeNeed : visitor === 'seller' ? c.sellerNeed : c.buyerNeed}</h1>
           {visitor === 'buyer' && <p className="text-base font-medium text-muted-foreground">{c.buyerNeedNote}</p>}
           <div className="mt-8 rounded-2xl border border-primary/30 bg-cream px-5 py-5"><p className="mb-3 text-lg font-bold">{c.docsTitle}</p><ol className="list-inside list-decimal space-y-2 text-lg font-semibold leading-snug"><li>{c.transferForm}</li><li>{c.certificate}</li></ol></div>
           <div className="mt-auto flex justify-center pt-8"><img src={applicationImage.url} alt="" aria-hidden="true" className="guide-enter h-32 w-auto object-contain" /></div>
