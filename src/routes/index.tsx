@@ -1,8 +1,9 @@
 import { createFileRoute } from '@tanstack/react-router';
 import { useEffect, useRef, useState } from 'react';
-import { ArrowLeft, ArrowRight, Car, ChevronRight, Coins, ListChecks, Receipt, Route as RouteIcon, RotateCcw, SquareParking, X, ZoomIn, ZoomOut } from 'lucide-react';
+import { toast } from 'sonner';
+import { ArrowLeft, Download, FileText, Image as ImageIcon, ArrowRight, Car, ChevronRight, Coins, ListChecks, Receipt, Route as RouteIcon, RotateCcw, SquareParking, X, ZoomIn, ZoomOut } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { documentFields, documentTitle, fieldText, languageNames, languages, previewSize, t, type DocumentKey, type Language } from '@/guide-content';
+import { documentFields, documentTitle, fieldText, languageNames, downloadText, languages, previewSize, t, type DocumentKey, type Language } from '@/guide-content';
 import startImage from '@/assets/todugi_start_car_transparent.png.asset.json';
 import applicationImage from '@/assets/todugi_application_guide_transparent.png.asset.json';
 import counterImage from '@/assets/todugi_ticket_guide3_transparent.png.asset.json';
@@ -11,6 +12,11 @@ import transferSellerPreview from '@/assets/form_transfer_seller.png.asset.json'
 import transferRepresentativePreview from '@/assets/form_transfer_representative.png.asset.json';
 import certificatePreview from '@/assets/form_certificate.png.asset.json';
 import numberPreview from '@/assets/form_number_form.png.asset.json';
+import transferBothPdf from '@/assets/transfer_both_dl.pdf.asset.json';
+import transferSellerPdf from '@/assets/transfer_seller_dl.pdf.asset.json';
+import transferRepresentativePdf from '@/assets/transfer_rep_dl.pdf.asset.json';
+import certificatePdf from '@/assets/certificate_dl.pdf.asset.json';
+import numberPdf from '@/assets/number_dl.pdf.asset.json';
 
 export const Route = createFileRoute('/')({
   head: () => ({ meta: [
@@ -27,13 +33,30 @@ export const Route = createFileRoute('/')({
 type Step = 'start' | 'language' | 'service' | 'visitor' | 'preparation' | 'insurance' | 'insuranceNote' | 'check' | 'checkNote' | 'address' | 'addressNote' | 'example' | 'finish';
 type Service = 'transfer' | 'number';
 type Visitor = 'together' | 'seller' | 'buyer' | 'representative';
-const docs: Record<DocumentKey, { preview: string }> = {
-  transferBoth: { preview: transferBothPreview.url },
-  transferSeller: { preview: transferSellerPreview.url },
-  transferRepresentative: { preview: transferRepresentativePreview.url },
-  certificate: { preview: certificatePreview.url },
-  numberForm: { preview: numberPreview.url },
+const docs: Record<DocumentKey, { preview: string; pdf: string; file: string }> = {
+  transferBoth: { preview: transferBothPreview.url, pdf: transferBothPdf.url, file: '이전등록신청서' },
+  transferSeller: { preview: transferSellerPreview.url, pdf: transferSellerPdf.url, file: '이전등록신청서_양도인만_방문' },
+  transferRepresentative: { preview: transferRepresentativePreview.url, pdf: transferRepresentativePdf.url, file: '이전등록신청서_대리인만_방문' },
+  certificate: { preview: certificatePreview.url, pdf: certificatePdf.url, file: '자동차양도증명서' },
+  numberForm: { preview: numberPreview.url, pdf: numberPdf.url, file: '자동차변경등록신청서' },
 };
+
+async function saveFile(url: string, name: string, type: string) {
+  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  try {
+    const blob = await (await fetch(url)).blob();
+    const file = new File([blob], name, { type });
+    if (isIOS && navigator.canShare?.({ files: [file] })) {
+      try { await navigator.share({ files: [file] }); return; } catch (e) { if ((e as Error).name === 'AbortError') return; }
+    }
+    const href = URL.createObjectURL(file);
+    const a = document.createElement('a');
+    a.href = href; a.download = name; document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(href), 60000);
+  } catch {
+    window.open(url, '_blank');
+  }
+}
 
 function FormWithLabels({ doc, language, alt, onDoubleClick }: { doc: DocumentKey; language: Language; alt: string; onDoubleClick?: () => void }) {
   return <div className="relative w-full select-none" onDoubleClick={onDoubleClick}>
@@ -52,10 +75,12 @@ function Guide() {
   const [knowsAddress, setKnowsAddress] = useState<boolean | null>(null);
   const [docIndex, setDocIndex] = useState(0);
   const [zoomed, setZoomed] = useState(false);
+  const [saveOpen, setSaveOpen] = useState(false);
   const [zoom, setZoom] = useState(1);
   const [offset, setOffset] = useState({ x: 0, y: 0 });
   const drag = useRef<{ x: number; y: number; startX: number; startY: number } | null>(null);
   const c = t(language);
+  const dl = downloadText[language];
   const selectedDocs: DocumentKey[] = service === 'number' ? ['numberForm'] : visitor === 'representative' ? ['transferRepresentative', 'certificate'] : visitor === 'seller' ? ['transferSeller', 'certificate'] : ['transferBoth', 'certificate'];
   const currentDoc: DocumentKey = selectedDocs[docIndex] ?? 'transferBoth';
   const docName = (d: DocumentKey) => c[documentTitle[d]];
@@ -165,7 +190,7 @@ function Guide() {
           <div className="mb-5 flex items-start justify-between gap-3"><div><p className="mb-2 text-xs font-bold uppercase text-primary">{service === 'number' ? '02' : '06'} · FORMS</p><h1 className="text-[1.8rem] font-extrabold leading-snug">{c.examples}</h1></div><img src={applicationImage.url} alt="신청서를 들고 안내하는 토더기" className="h-16 w-20 shrink-0 object-contain" /></div>
           <div className="mb-4 flex items-center gap-3"><span className="shrink-0 rounded-full bg-secondary px-3 py-1 text-xs font-semibold text-secondary-foreground">{docIndex + 1} / {selectedDocs.length}</span><span className="min-w-0 text-lg font-bold leading-snug">{docName(currentDoc)}</span></div>
           <Button variant="paper" size="paper" onClick={openZoom} className="group w-full overflow-hidden" aria-label={`${docName(currentDoc)} ${c.zoom}`}><div className="w-full [container-type:inline-size]"><FormWithLabels doc={currentDoc} language={language} alt={imageAlt} /></div></Button>
-          <div className="mt-3 flex flex-wrap gap-2"><Button variant="outline" onClick={openZoom} className="h-11 text-base"><ZoomIn />{c.zoom}</Button></div>
+          <div className="mt-3 grid grid-cols-2 gap-2"><Button variant="outline" onClick={openZoom} className="h-11 min-w-0 px-2 text-base"><ZoomIn /><span className="truncate">{c.zoom}</span></Button><Button variant="outline" onClick={() => setSaveOpen(true)} className="h-11 min-w-0 border-primary/40 bg-primary/15 px-2 text-base text-primary hover:bg-primary/25 hover:text-primary"><Download /><span className="truncate">{dl.download}</span></Button></div>
           <div className="mt-8"><Primary onClick={() => { if (docIndex < selectedDocs.length - 1) { setDocIndex(i => i + 1); window.scrollTo({ top: 0, behavior: 'instant' }); } else go('finish'); }}>{docIndex < selectedDocs.length - 1 ? c.nextDoc : c.afterWrite}</Primary></div>
         </>}
         {step === 'finish' && <>
@@ -177,6 +202,16 @@ function Guide() {
         </>}
       </main>
     </div>
+    {saveOpen && <div className="fixed inset-0 z-50 flex items-end justify-center bg-foreground/40" onClick={() => setSaveOpen(false)}>
+      <div role="dialog" aria-modal="true" aria-label={dl.title} onClick={e => e.stopPropagation()} className="guide-enter w-full max-w-[560px] rounded-t-3xl bg-card px-6 pb-8 pt-6 shadow-[0_-8px_32px_var(--shadow-app)]">
+        <p className="mb-5 text-center text-lg font-bold">{dl.title}</p>
+        <div className="space-y-3">
+          <Button variant="outline" className="h-14 w-full justify-start gap-3 text-base font-bold" onClick={() => { setSaveOpen(false); toast(dl.pdfToast); void saveFile(docs[currentDoc].pdf, `${docs[currentDoc].file}.pdf`, 'application/pdf'); }}><FileText className="text-primary" />{dl.pdf}</Button>
+          <Button variant="outline" className="h-14 w-full justify-start gap-3 text-base font-bold" onClick={() => { setSaveOpen(false); toast(dl.imageToast); void saveFile(docs[currentDoc].preview, `${docs[currentDoc].file}.png`, 'image/png'); }}><ImageIcon className="text-primary" />{dl.image}</Button>
+          <Button variant="ghost" className="h-12 w-full text-base" onClick={() => setSaveOpen(false)}>{dl.cancel}</Button>
+        </div>
+      </div>
+    </div>}
     {zoomed && <div role="dialog" aria-modal="true" aria-label={`${docName(currentDoc)} ${c.zoom}`} className="fixed inset-0 z-50 flex flex-col bg-background">
       <div className="flex items-center justify-between gap-2 border-b border-border bg-card px-4 py-3"><span className="min-w-0 truncate text-base font-bold">{docName(currentDoc)}</span><Button variant="ghost" size="icon" aria-label={c.close} onClick={() => setZoomed(false)}><X /></Button></div>
       <div className="relative flex flex-1 touch-none items-center justify-center overflow-hidden bg-muted" onPointerDown={e => { drag.current = { x: e.clientX, y: e.clientY, startX: offset.x, startY: offset.y }; e.currentTarget.setPointerCapture(e.pointerId); }} onPointerMove={e => { if (drag.current) setOffset({ x: drag.current.startX + e.clientX - drag.current.x, y: drag.current.startY + e.clientY - drag.current.y }); }} onPointerUp={() => { drag.current = null; }} onPointerCancel={() => { drag.current = null; }}><div className="w-[min(100%,calc((100dvh-140px)*0.7077))] [container-type:inline-size]" style={{ transform: `translate(${offset.x}px, ${offset.y}px) scale(${zoom})` }}><FormWithLabels doc={currentDoc} language={language} alt={imageAlt} onDoubleClick={() => { setZoom(z => z >= 3 ? 1 : 2); setOffset({ x: 0, y: 0 }); }} /></div></div>
