@@ -155,3 +155,11 @@ export const documentFields: Record<DocumentKey, FieldMarker[]> = {
     { f: 'applicant', x: 334, y: 796, a: 'l' }, { f: 'name', x: 427, y: 796 }, { f: 'sign', x: 750, y: 806, a: 'l' },
   ],
 };
+
+export const downloadText: Record<Language, { download: string; title: string; pdf: string; image: string; cancel: string; pdfToast: string; imageToast: string }> = {
+  ko: { download: '서식 다운로드', title: '서식을 어떤 형식으로 저장할까요?', pdf: 'PDF로 저장', image: '이미지로 저장', cancel: '취소', pdfToast: 'PDF 파일을 저장합니다', imageToast: '이미지 파일을 저장합니다' },
+  en: { download: 'Download Form', title: 'Choose a file format', pdf: 'Download PDF', image: 'Download Image', cancel: 'Cancel', pdfToast: 'Saving the PDF file', imageToast: 'Saving the image file' },
+  zh: { download: '下载表格', title: '请选择保存格式', pdf: '下载 PDF', image: '下载图片', cancel: '取消', pdfToast: '正在保存 PDF 文件', imageToast: '正在保存图片文件' },
+  vi: { download: 'Tải biểu mẫu', title: 'Chọn định dạng lưu', pdf: 'Tải PDF', image: 'Tải hình ảnh', cancel: 'Hủy', pdfToast: 'Đang lưu tệp PDF', imageToast: 'Đang lưu tệp hình ảnh' },
+  uz: { download: 'Shaklni yuklab olish', title: 'Fayl formatini tanlang', pdf: 'PDF yuklab olish', image: 'Rasmni yuklab olish', cancel: 'Bekor qilish', pdfToast: 'PDF fayl saqlanmoqda', imageToast: 'Rasm fayli saqlanmoqda' },
+};
