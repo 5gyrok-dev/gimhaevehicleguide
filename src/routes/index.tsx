@@ -163,7 +163,6 @@ function Guide() {
         </>}
         {step === 'example' && <>
           <div className="mb-5 flex items-start justify-between gap-3"><div><p className="mb-2 text-xs font-bold uppercase text-primary">{service === 'number' ? '02' : '06'} · FORMS</p><h1 className="text-[1.8rem] font-extrabold leading-snug">{c.examples}</h1></div><img src={applicationImage.url} alt="신청서를 들고 안내하는 토더기" className="h-16 w-20 shrink-0 object-contain" /></div>
-          <p className="mb-5 text-lg font-semibold leading-snug text-foreground">{c.exampleLead}</p>
           <div className="mb-4 flex items-center gap-3"><span className="shrink-0 rounded-full bg-secondary px-3 py-1 text-xs font-semibold text-secondary-foreground">{docIndex + 1} / {selectedDocs.length}</span><span className="min-w-0 text-lg font-bold leading-snug">{docName(currentDoc)}</span></div>
           <Button variant="paper" size="paper" onClick={openZoom} className="group w-full overflow-hidden" aria-label={`${docName(currentDoc)} ${c.zoom}`}><div className="w-full [container-type:inline-size]"><FormWithLabels doc={currentDoc} language={language} alt={imageAlt} /></div></Button>
           <div className="mt-3 flex flex-wrap gap-2"><Button variant="outline" onClick={openZoom} className="h-11 text-base"><ZoomIn />{c.zoom}</Button></div>
