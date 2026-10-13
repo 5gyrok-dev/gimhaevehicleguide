@@ -4,9 +4,6 @@ import { toast } from 'sonner';
 import { ArrowLeft, Download, FileText, Image as ImageIcon, ArrowRight, Car, ChevronRight, Coins, ListChecks, Receipt, Route as RouteIcon, RotateCcw, SquareParking, X, ZoomIn, ZoomOut } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { documentFields, documentTitle, fieldText, languageNames, downloadText, languages, previewSize, t, type DocumentKey, type Language } from '@/guide-content';
-import startImage from '@/assets/todugi_start_car_transparent.png.asset.json';
-import applicationImage from '@/assets/todugi_application_guide_transparent.png.asset.json';
-import counterImage from '@/assets/todugi_ticket_guide3_transparent.png.asset.json';
 import transferBothPreview from '@/assets/form_transfer_both.png.asset.json';
 import transferSellerPreview from '@/assets/form_transfer_seller.png.asset.json';
 import transferRepresentativePreview from '@/assets/form_transfer_representative.png.asset.json';
@@ -126,47 +123,47 @@ function Guide() {
         {step === 'start' && <div className="flex flex-1 flex-col justify-center pb-14 pt-0">
           <div className="mx-auto mb-5 inline-flex w-fit items-center gap-2 rounded-full bg-secondary px-3 py-1.5 text-xs font-bold tracking-wide text-secondary-foreground"><span className="h-2 w-2 rounded-full bg-primary" />VEHICLE REGISTRATION</div>
           <h1 className="text-center text-[2.2rem] font-extrabold leading-tight text-foreground">{c.startTitle}</h1>
-          <div className="my-6 flex items-center justify-center"><img src={startImage.url} alt="차를 타고 있는 토더기" className="h-auto max-h-[320px] w-full -translate-x-[7.5%] object-contain" /></div>
+          <div className="my-6 flex items-center justify-center"></div>
           <div className="mt-6"><Primary onClick={() => go('language')}>START</Primary></div>
         </div>}
         {step === 'language' && <>
           <p className="mb-2 text-xs font-bold uppercase text-primary">LANGUAGE</p><h1 className="mb-8 text-[1.9rem] font-extrabold leading-snug">{c.language}</h1>
           <div className="space-y-3">{languages.map((lang, i) => <Choice key={lang} i={i} title={languageNames[lang]} onClick={() => { setLanguage(lang); go('service'); }} />)}</div>
-          <div className="mt-auto flex justify-center pt-8"><img src={startImage.url} alt="" aria-hidden="true" className="guide-enter h-32 w-auto -translate-x-[7.5%] object-contain" /></div>
+          <div className="mt-auto flex justify-center pt-8"></div>
         </>}
         {step === 'service' && <>
           <p className="mb-2 text-xs font-bold uppercase text-primary">01 · SERVICE</p><h1 className="mb-8 text-[1.9rem] font-extrabold leading-snug">{c.service}</h1>
           <div className="space-y-4"><Choice title={c.transfer} detail={c.transferDetail} onClick={() => { if (service !== 'transfer') { setService('transfer'); setVisitor(null); setInsurance(null); setKnowsAddress(null); } setDocIndex(0); go('visitor'); }} /><Choice i={1} title={c.number} detail={c.numberDetail} onClick={() => { if (service !== 'number') { setService('number'); setVisitor(null); setInsurance(null); setKnowsAddress(null); } setDocIndex(0); go('example'); }} /></div>
-          <div className="mt-auto flex justify-center pt-8"><img src={startImage.url} alt="" aria-hidden="true" className="guide-enter h-32 w-auto -translate-x-[7.5%] object-contain" /></div>
+          <div className="mt-auto flex justify-center pt-8"></div>
         </>}
         {step === 'visitor' && <>
           <p className="mb-2 text-xs font-bold uppercase text-primary">02 · VISIT</p><h1 className="mb-7 whitespace-nowrap text-[1.55rem] font-extrabold leading-snug">{c.visitor}</h1>
           <div className="space-y-3"><Choice title={c.together} onClick={() => { setVisitor('together'); setDocIndex(0); go('insurance'); }} /><Choice i={1} title={c.seller} onClick={() => { setVisitor('seller'); setDocIndex(0); go('preparation'); }} /><Choice i={2} title={c.buyer} onClick={() => { setVisitor('buyer'); setDocIndex(0); go('preparation'); }} /><Choice i={3} title={c.representative} detail={c.representativeDetail} onClick={() => { setVisitor('representative'); setDocIndex(0); go('preparation'); }} /></div>
           <div className="mt-6 space-y-2 rounded-2xl border border-primary/35 bg-cream px-5 py-4 text-center">{[c.roleSeller, c.roleBuyer].map(r => <p key={r} className="text-lg font-bold leading-snug text-foreground">{r}</p>)}</div>
-          <div className="mt-auto flex justify-center pt-8"><img src={startImage.url} alt="" aria-hidden="true" className="guide-enter h-32 w-auto -translate-x-[7.5%] object-contain" /></div>
+          <div className="mt-auto flex justify-center pt-8"></div>
         </>}
         {step === 'preparation' && <>
           <p className="mb-2 text-xs font-bold uppercase text-primary">03 · PREPARATION</p><h1 className={`whitespace-pre-line font-extrabold leading-snug ${visitor === 'seller' ? 'text-[1.7rem] sm:text-[1.9rem]' : visitor === 'representative' ? 'text-[1.15rem] sm:text-[1.5rem]' : 'text-[1.35rem] sm:text-[1.9rem]'} ${visitor === 'buyer' ? 'mb-4' : 'mb-7'}`}>{visitor === 'representative' ? c.representativeNeed : visitor === 'seller' ? c.sellerNeed : c.buyerNeed}</h1>
           {visitor === 'buyer' && <p className="text-base font-medium text-muted-foreground">{c.buyerNeedNote}</p>}
           <div className="mt-8 rounded-2xl border border-primary/30 bg-cream px-5 py-5"><p className="mb-3 text-lg font-bold">{c.docsTitle}</p><ol className="list-inside list-decimal space-y-2 text-lg font-semibold leading-snug"><li>{c.transferForm}</li><li>{c.certificate}</li></ol></div>
-          <div className="mt-auto flex justify-center pt-8"><img src={applicationImage.url} alt="" aria-hidden="true" className="guide-enter h-32 w-auto object-contain" /></div>
+          <div className="mt-auto flex justify-center pt-8"></div>
           <div className="pt-6"><Primary onClick={() => go('insurance')}>{c.understood}</Primary></div>
         </>}
         {step === 'insurance' && <>
           <p className="mb-2 text-xs font-bold uppercase text-primary">03 · INSURANCE</p><h1 className="mb-8 text-[1.9rem] font-extrabold leading-snug">{c.insurance}</h1>
           <div className="space-y-3"><Choice title={c.yes} onClick={() => { setInsurance(true); go('check'); }} /><Choice i={1} title={c.no} onClick={() => { setInsurance(false); go('insuranceNote'); }} /></div>
-          <div className="mt-auto flex justify-center pt-8"><img src={startImage.url} alt="" aria-hidden="true" className="guide-enter h-32 w-auto -translate-x-[7.5%] object-contain" /></div>
+          <div className="mt-auto flex justify-center pt-8"></div>
         </>}
         {step === 'insuranceNote' && <>
           <p className="mb-2 text-xs font-bold uppercase text-primary">03 · INSURANCE</p><h1 className="text-[1.9rem] font-extrabold leading-snug">{c.insuranceNote}</h1>
-          <div className="mt-auto flex justify-center pt-8"><img src={applicationImage.url} alt="" aria-hidden="true" className="guide-enter h-32 w-auto object-contain" /></div>
+          <div className="mt-auto flex justify-center pt-8"></div>
           <div className="pt-6"><Primary onClick={() => go('check')}>{c.continue}</Primary></div>
         </>}
         {step === 'check' && <>
           <p className="mb-2 text-xs font-bold uppercase text-primary">04 · CHECK</p><h1 className="mb-3 whitespace-pre-line text-[1.6rem] font-extrabold leading-snug">{c.check}</h1>
           <p className="mb-7 text-sm font-medium text-muted-foreground">{c.checkSub}</p>
           <div className="space-y-3"><Choice title={c.checkYes} onClick={() => go('address')} /><Choice i={1} title={c.checkNo} onClick={() => go('checkNote')} /></div>
-          <div className="mt-auto flex justify-center pt-8"><img src={startImage.url} alt="" aria-hidden="true" className="guide-enter h-32 w-auto -translate-x-[7.5%] object-contain" /></div>
+          <div className="mt-auto flex justify-center pt-8"></div>
         </>}
         {step === 'checkNote' && <>
           <p className="mb-2 text-xs font-bold uppercase text-primary">04 · CHECK</p><h1 className={`text-[1.45rem] font-extrabold leading-snug ${language === 'ko' ? 'whitespace-nowrap' : ''}`}>{c.checkNoteTitle}</h1>
@@ -177,17 +174,17 @@ function Guide() {
         {step === 'address' && <>
           <p className="mb-2 text-xs font-bold uppercase text-primary">05 · ADDRESS</p><h1 className="mb-8 text-[1.4rem] font-extrabold leading-snug sm:text-[1.9rem]">{c.address}</h1>
           <div className="space-y-3"><Choice title={c.addressYes} onClick={() => { setKnowsAddress(true); setDocIndex(0); go('example'); }} /><Choice i={1} title={c.addressNo} onClick={() => { setKnowsAddress(false); go('addressNote'); }} /></div>
-          <div className="mt-auto flex justify-center pt-8"><img src={startImage.url} alt="" aria-hidden="true" className="guide-enter h-32 w-auto -translate-x-[7.5%] object-contain" /></div>
+          <div className="mt-auto flex justify-center pt-8"></div>
         </>}
         {step === 'addressNote' && <>
           <p className="mb-2 text-xs font-bold uppercase text-primary">05 · ADDRESS</p><h1 className="text-[1.9rem] font-extrabold leading-snug">{c.addressTitle}</h1>
           <p className="mt-5 whitespace-nowrap text-center text-[0.95rem] font-semibold leading-snug">{c.addressBody}</p>
           <p className="mt-4 whitespace-nowrap rounded-xl bg-cream px-3 py-3 text-center text-[0.9rem] font-medium">{c.addressHelp}</p>
-          <div className="mt-auto flex justify-center pt-8"><img src={applicationImage.url} alt="" aria-hidden="true" className="guide-enter h-32 w-auto object-contain" /></div>
+          <div className="mt-auto flex justify-center pt-8"></div>
           <div className="pt-6"><Primary onClick={() => { setDocIndex(0); go('example'); }}>{c.addressDone}</Primary></div>
         </>}
         {step === 'example' && <>
-          <div className="mb-5 flex items-start justify-between gap-3"><div><p className="mb-2 text-xs font-bold uppercase text-primary">{service === 'number' ? '02' : '06'} · FORMS</p><h1 className="text-[1.8rem] font-extrabold leading-snug">{c.examples}</h1></div><img src={applicationImage.url} alt="신청서를 들고 안내하는 토더기" className="h-16 w-20 shrink-0 object-contain" /></div>
+          <div className="mb-5 flex items-start justify-between gap-3"><div><p className="mb-2 text-xs font-bold uppercase text-primary">{service === 'number' ? '02' : '06'} · FORMS</p><h1 className="text-[1.8rem] font-extrabold leading-snug">{c.examples}</h1></div></div>
           <div className="mb-4 flex items-center gap-3"><span className="shrink-0 rounded-full bg-secondary px-3 py-1 text-xs font-semibold text-secondary-foreground">{docIndex + 1} / {selectedDocs.length}</span><span className="min-w-0 text-lg font-bold leading-snug">{docName(currentDoc)}</span></div>
           <Button variant="paper" size="paper" onClick={openZoom} className="group w-full overflow-hidden" aria-label={`${docName(currentDoc)} ${c.zoom}`}><div className="w-full [container-type:inline-size]"><FormWithLabels doc={currentDoc} language={language} alt={imageAlt} /></div></Button>
           <div className="mt-3 grid grid-cols-2 gap-2"><Button variant="outline" onClick={openZoom} className="h-11 min-w-0 px-2 text-base"><ZoomIn /><span className="truncate">{c.zoom}</span></Button><Button variant="outline" onClick={() => setSaveOpen(true)} className="h-11 min-w-0 border-primary/40 bg-primary/15 px-2 text-base text-primary hover:bg-primary/25 hover:text-primary"><Download /><span className="truncate">{dl.download}</span></Button></div>
@@ -196,7 +193,7 @@ function Guide() {
         {step === 'finish' && <>
           <p className="mb-2 text-xs font-bold uppercase text-primary">{service === 'number' ? '03' : '07'} · FINAL STEP</p><h1 className="mb-5 mt-16 whitespace-pre-line text-center text-[1.7rem] font-extrabold leading-snug sm:text-[1.9rem]">{c.finishLead}</h1>
           <p className="mt-3 text-center text-base text-muted-foreground">{c.finishNote}</p>
-          <div className="my-8 flex items-center justify-center"><img src={counterImage.url} alt="번호표 발급 기계를 가리키는 토더기" className="h-auto max-h-64 w-full -translate-x-[5.5%] object-contain" /></div>
+          <div className="my-8 flex items-center justify-center"></div>
           <Button variant="guide" size="guide" onClick={reset} className="w-full justify-center text-center"><span className="flex items-center gap-2"><RotateCcw aria-hidden="true" />{c.restart}</span></Button>
           <div className="flex-1" />
         </>}
