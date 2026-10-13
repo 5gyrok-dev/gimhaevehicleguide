@@ -9,6 +9,8 @@ import transferSellerPreview from '@/assets/form_transfer_seller.png.asset.json'
 import transferRepresentativePreview from '@/assets/form_transfer_representative.png.asset.json';
 import certificatePreview from '@/assets/form_certificate.png.asset.json';
 import numberPreview from '@/assets/form_number_form.png.asset.json';
+import flowImage from '@/assets/car_registration_flow.png.asset.json';
+import kioskImage from '@/assets/number_kiosk.png.asset.json';
 import transferBothPdf from '@/assets/transfer_both_dl.pdf.asset.json';
 import transferSellerPdf from '@/assets/transfer_seller_dl.pdf.asset.json';
 import transferRepresentativePdf from '@/assets/transfer_rep_dl.pdf.asset.json';
@@ -123,7 +125,7 @@ function Guide() {
         {step === 'start' && <div className="flex flex-1 flex-col justify-center pb-14 pt-0">
           <div className="mx-auto mb-5 inline-flex w-fit items-center gap-2 rounded-full bg-secondary px-4 py-2 text-sm font-bold tracking-wider text-secondary-foreground"><span className="h-2.5 w-2.5 rounded-full bg-primary" />VEHICLE REGISTRATION</div>
           <h1 className="text-center text-[2.2rem] font-extrabold leading-tight text-foreground">{c.startTitle}</h1>
-          <div className="my-6 flex flex-col items-center justify-center gap-4"><div className="flex h-28 w-28 items-center justify-center rounded-full bg-primary/10"><Car aria-hidden="true" className="h-14 w-14 text-primary" /></div><p className="text-center text-base font-semibold text-muted-foreground">{c.startTip}</p></div>
+          <div className="my-6 flex justify-center"><img src={flowImage.url} alt="" draggable={false} className="h-auto w-full max-w-[420px]" /></div>
           <div className="mt-6"><Primary onClick={() => go('language')}>START</Primary></div>
         </div>}
         {step === 'language' && <>
@@ -193,7 +195,7 @@ function Guide() {
         {step === 'finish' && <>
           <p className="mb-2 text-xs font-bold uppercase text-primary">{service === 'number' ? '03' : '07'} · FINAL STEP</p><h1 className="mb-5 mt-16 whitespace-pre-line text-center text-[1.7rem] font-extrabold leading-snug sm:text-[1.9rem]">{c.finishLead}</h1>
           <p className="mt-3 text-center text-base text-muted-foreground">{c.finishNote}</p>
-          <div className="my-8 flex flex-col items-center justify-center gap-4"><div className="flex h-28 w-28 items-center justify-center rounded-full bg-primary/10"><Car aria-hidden="true" className="h-14 w-14 text-primary" /></div><p className="text-center text-base font-semibold text-muted-foreground">{c.finishTip}</p></div>
+          <div className="my-8 flex justify-center"><img src={kioskImage.url} alt="" draggable={false} className="h-44 w-auto" /></div>
           <Button variant="guide" size="guide" onClick={reset} className="w-full justify-center text-center"><span className="flex items-center gap-2"><RotateCcw aria-hidden="true" />{c.restart}</span></Button>
           <div className="flex-1" />
         </>}
