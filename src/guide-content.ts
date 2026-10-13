@@ -20,7 +20,7 @@ const copy = {
     zoom: '크게 보기', close: '닫기', zoomIn: '확대', zoomOut: '축소', nextDoc: '다음 서류', afterWrite: '작성 완료',
     finishTitle: '다음 단계 안내', finishLead: '신청서를 모두 작성한 후\n번호표를 뽑아주세요', finishNote: '\n',
     restart: '처음부터 다시 시작', back: '이전',
-    transferForm: '이전등록 신청서', certificate: '자동차양도증명서', numberForm: '자동차 변경등록 신청서', startTip: '화면을 따라 차근차근 준비하세요', footTip: '순서대로 따라오시면 돼요', finishTip: '준비가 끝났어요',
+    transferForm: '이전등록 신청서', certificate: '자동차양도증명서', numberForm: '자동차 변경등록 신청서',
   },
   en: {
     app: 'Gimhae Vehicle Registration Guide', startTitle: 'Vehicle Registration Guide', language: 'Choose your language',
@@ -39,7 +39,7 @@ const copy = {
     zoom: 'Enlarge', close: 'Close', zoomIn: 'Zoom in', zoomOut: 'Zoom out', nextDoc: 'Next form', afterWrite: 'Done',
     finishTitle: 'Next steps', finishLead: 'Fill out all forms, then take a number ticket', finishNote: 'Then wait to be called at the counter',
     restart: 'Start again', back: 'Back',
-    transferForm: 'Transfer registration form', certificate: 'Vehicle transfer certificate', numberForm: 'Registration change form', startTip: 'Follow the steps one by one', footTip: 'Just follow the steps in order', finishTip: 'All set',
+    transferForm: 'Transfer registration form', certificate: 'Vehicle transfer certificate', numberForm: 'Registration change form',
   },
   zh: {
     app: '金海市外国人汽车登记指南', startTitle: '汽车登记指南', language: '请选择语言',
@@ -58,7 +58,7 @@ const copy = {
     zoom: '放大查看', close: '关闭', zoomIn: '放大', zoomOut: '缩小', nextDoc: '下一份材料', afterWrite: '填写完成',
     finishTitle: '下一步', finishLead: '填完所有申请表后，请领取号码牌', finishNote: '领取号码后到窗口咨询',
     restart: '重新开始', back: '返回',
-    transferForm: '过户登记申请表', certificate: '汽车转让证明书', numberForm: '汽车变更登记申请表', startTip: '跟着屏幕一步步准备', footTip: '按顺序进行即可', finishTip: '准备完成',
+    transferForm: '过户登记申请表', certificate: '汽车转让证明书', numberForm: '汽车变更登记申请表',
   },
   vi: {
     app: 'Hướng dẫn đăng ký xe tại Gimhae', startTitle: 'Hướng dẫn đăng ký xe', language: 'Chọn ngôn ngữ',
@@ -77,7 +77,7 @@ const copy = {
     zoom: 'Xem lớn', close: 'Đóng', zoomIn: 'Phóng to', zoomOut: 'Thu nhỏ', nextDoc: 'Giấy tờ tiếp theo', afterWrite: 'Đã điền xong',
     finishTitle: 'Bước tiếp theo', finishLead: 'Điền xong tất cả đơn rồi lấy số thứ tự', finishNote: 'Sau đó chờ gọi tại quầy',
     restart: 'Bắt đầu lại', back: 'Quay lại',
-    transferForm: 'Đơn đăng ký sang tên', certificate: 'Giấy chuyển nhượng xe', numberForm: 'Đơn thay đổi đăng ký xe', startTip: 'Hãy chuẩn bị theo từng bước trên màn hình', footTip: 'Chỉ cần làm theo thứ tự', finishTip: 'Đã chuẩn bị xong',
+    transferForm: 'Đơn đăng ký sang tên', certificate: 'Giấy chuyển nhượng xe', numberForm: 'Đơn thay đổi đăng ký xe',
   },
   uz: {
     app: 'Gimhae avtomobil ro‘yxati yo‘riqnomasi', startTitle: 'Avtomobil ro‘yxati', language: 'Tilni tanlang',
@@ -96,7 +96,7 @@ const copy = {
     zoom: 'Kattalashtirish', close: 'Yopish', zoomIn: 'Kattalashtirish', zoomOut: 'Kichraytirish', nextDoc: 'Keyingi hujjat', afterWrite: 'To‘ldirdim',
     finishTitle: 'Keyingi qadam', finishLead: 'Arizalarni to‘ldirib, navbat raqamini oling', finishNote: 'So‘ng xizmat oynasida kuting',
     restart: 'Qayta boshlash', back: 'Orqaga',
-    transferForm: 'Egalikni o‘tkazish arizasi', certificate: 'Avtomobil topshirish guvohnomasi', numberForm: 'Ro‘yxatni o‘zgartirish arizasi', startTip: 'Ekranni bosqichma-bosqich kuzatib boring', footTip: 'Ketma-ket davom etsangiz bo‘ldi', finishTip: 'Hammasi tayyor',
+    transferForm: 'Egalikni o‘tkazish arizasi', certificate: 'Avtomobil topshirish guvohnomasi', numberForm: 'Ro‘yxatni o‘zgartirish arizasi',
   },
 } as const;
 export const t = (lang: Language) => copy[lang];
