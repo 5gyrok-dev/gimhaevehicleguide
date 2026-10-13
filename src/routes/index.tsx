@@ -131,41 +131,41 @@ function Guide() {
         {step === 'language' && <>
           <p className="mb-2 text-xs font-bold uppercase text-primary">LANGUAGE</p><h1 className="mb-8 text-[1.9rem] font-extrabold leading-snug">{c.language}</h1>
           <div className="space-y-3">{languages.map((lang, i) => <Choice key={lang} i={i} title={languageNames[lang]} onClick={() => { setLanguage(lang); go('service'); }} />)}</div>
-          <div className="mt-auto flex flex-col items-center justify-center gap-1.5 pt-8"><Car aria-hidden="true" className="h-5 w-5 text-primary/60" /><p className="text-sm text-muted-foreground">{c.footTip}</p></div>
+          <div className="mt-auto" />
         </>}
         {step === 'service' && <>
           <p className="mb-2 text-xs font-bold uppercase text-primary">01 · SERVICE</p><h1 className="mb-8 text-[1.9rem] font-extrabold leading-snug">{c.service}</h1>
           <div className="space-y-4"><Choice title={c.transfer} detail={c.transferDetail} onClick={() => { if (service !== 'transfer') { setService('transfer'); setVisitor(null); setInsurance(null); setKnowsAddress(null); } setDocIndex(0); go('visitor'); }} /><Choice i={1} title={c.number} detail={c.numberDetail} onClick={() => { if (service !== 'number') { setService('number'); setVisitor(null); setInsurance(null); setKnowsAddress(null); } setDocIndex(0); go('example'); }} /></div>
-          <div className="mt-auto flex flex-col items-center justify-center gap-1.5 pt-8"><Car aria-hidden="true" className="h-5 w-5 text-primary/60" /><p className="text-sm text-muted-foreground">{c.footTip}</p></div>
+          <div className="mt-auto" />
         </>}
         {step === 'visitor' && <>
           <p className="mb-2 text-xs font-bold uppercase text-primary">02 · VISIT</p><h1 className="mb-7 whitespace-nowrap text-[1.55rem] font-extrabold leading-snug">{c.visitor}</h1>
           <div className="space-y-3"><Choice title={c.together} onClick={() => { setVisitor('together'); setDocIndex(0); go('insurance'); }} /><Choice i={1} title={c.seller} onClick={() => { setVisitor('seller'); setDocIndex(0); go('preparation'); }} /><Choice i={2} title={c.buyer} onClick={() => { setVisitor('buyer'); setDocIndex(0); go('preparation'); }} /><Choice i={3} title={c.representative} detail={c.representativeDetail} onClick={() => { setVisitor('representative'); setDocIndex(0); go('preparation'); }} /></div>
           <div className="mt-6 space-y-2 rounded-2xl border border-primary/35 bg-cream px-5 py-4 text-center">{[c.roleSeller, c.roleBuyer].map(r => <p key={r} className="text-lg font-bold leading-snug text-foreground">{r}</p>)}</div>
-          <div className="mt-auto flex flex-col items-center justify-center gap-1.5 pt-8"><Car aria-hidden="true" className="h-5 w-5 text-primary/60" /><p className="text-sm text-muted-foreground">{c.footTip}</p></div>
+          <div className="mt-auto" />
         </>}
         {step === 'preparation' && <>
           <p className="mb-2 text-xs font-bold uppercase text-primary">03 · PREPARATION</p><h1 className={`whitespace-pre-line font-extrabold leading-snug ${visitor === 'seller' ? 'text-[1.7rem] sm:text-[1.9rem]' : visitor === 'representative' ? 'text-[1.15rem] sm:text-[1.5rem]' : 'text-[1.35rem] sm:text-[1.9rem]'} ${visitor === 'buyer' ? 'mb-4' : 'mb-7'}`}>{visitor === 'representative' ? c.representativeNeed : visitor === 'seller' ? c.sellerNeed : c.buyerNeed}</h1>
           {visitor === 'buyer' && <p className="text-base font-medium text-muted-foreground">{c.buyerNeedNote}</p>}
           <div className="mt-8 rounded-2xl border border-primary/30 bg-cream px-5 py-5"><p className="mb-3 text-lg font-bold">{c.docsTitle}</p><ol className="list-inside list-decimal space-y-2 text-lg font-semibold leading-snug"><li>{c.transferForm}</li><li>{c.certificate}</li></ol></div>
-          <div className="mt-auto flex flex-col items-center justify-center gap-1.5 pt-8"><Car aria-hidden="true" className="h-5 w-5 text-primary/60" /><p className="text-sm text-muted-foreground">{c.footTip}</p></div>
+          <div className="mt-auto" />
           <div className="pt-6"><Primary onClick={() => go('insurance')}>{c.understood}</Primary></div>
         </>}
         {step === 'insurance' && <>
           <p className="mb-2 text-xs font-bold uppercase text-primary">03 · INSURANCE</p><h1 className="mb-8 text-[1.9rem] font-extrabold leading-snug">{c.insurance}</h1>
           <div className="space-y-3"><Choice title={c.yes} onClick={() => { setInsurance(true); go('check'); }} /><Choice i={1} title={c.no} onClick={() => { setInsurance(false); go('insuranceNote'); }} /></div>
-          <div className="mt-auto flex flex-col items-center justify-center gap-1.5 pt-8"><Car aria-hidden="true" className="h-5 w-5 text-primary/60" /><p className="text-sm text-muted-foreground">{c.footTip}</p></div>
+          <div className="mt-auto" />
         </>}
         {step === 'insuranceNote' && <>
           <p className="mb-2 text-xs font-bold uppercase text-primary">03 · INSURANCE</p><h1 className="text-[1.9rem] font-extrabold leading-snug">{c.insuranceNote}</h1>
-          <div className="mt-auto flex flex-col items-center justify-center gap-1.5 pt-8"><Car aria-hidden="true" className="h-5 w-5 text-primary/60" /><p className="text-sm text-muted-foreground">{c.footTip}</p></div>
+          <div className="mt-auto" />
           <div className="pt-6"><Primary onClick={() => go('check')}>{c.continue}</Primary></div>
         </>}
         {step === 'check' && <>
           <p className="mb-2 text-xs font-bold uppercase text-primary">04 · CHECK</p><h1 className="mb-3 whitespace-pre-line text-[1.6rem] font-extrabold leading-snug">{c.check}</h1>
           <p className="mb-7 text-sm font-medium text-muted-foreground">{c.checkSub}</p>
           <div className="space-y-3"><Choice title={c.checkYes} onClick={() => go('address')} /><Choice i={1} title={c.checkNo} onClick={() => go('checkNote')} /></div>
-          <div className="mt-auto flex flex-col items-center justify-center gap-1.5 pt-8"><Car aria-hidden="true" className="h-5 w-5 text-primary/60" /><p className="text-sm text-muted-foreground">{c.footTip}</p></div>
+          <div className="mt-auto" />
         </>}
         {step === 'checkNote' && <>
           <p className="mb-2 text-xs font-bold uppercase text-primary">04 · CHECK</p><h1 className={`text-[1.45rem] font-extrabold leading-snug ${language === 'ko' ? 'whitespace-nowrap' : ''}`}>{c.checkNoteTitle}</h1>
@@ -176,13 +176,13 @@ function Guide() {
         {step === 'address' && <>
           <p className="mb-2 text-xs font-bold uppercase text-primary">05 · ADDRESS</p><h1 className="mb-8 text-[1.4rem] font-extrabold leading-snug sm:text-[1.9rem]">{c.address}</h1>
           <div className="space-y-3"><Choice title={c.addressYes} onClick={() => { setKnowsAddress(true); setDocIndex(0); go('example'); }} /><Choice i={1} title={c.addressNo} onClick={() => { setKnowsAddress(false); go('addressNote'); }} /></div>
-          <div className="mt-auto flex flex-col items-center justify-center gap-1.5 pt-8"><Car aria-hidden="true" className="h-5 w-5 text-primary/60" /><p className="text-sm text-muted-foreground">{c.footTip}</p></div>
+          <div className="mt-auto" />
         </>}
         {step === 'addressNote' && <>
           <p className="mb-2 text-xs font-bold uppercase text-primary">05 · ADDRESS</p><h1 className="text-[1.9rem] font-extrabold leading-snug">{c.addressTitle}</h1>
           <p className="mt-5 whitespace-nowrap text-center text-[0.95rem] font-semibold leading-snug">{c.addressBody}</p>
           <p className="mt-4 whitespace-nowrap rounded-xl bg-cream px-3 py-3 text-center text-[0.9rem] font-medium">{c.addressHelp}</p>
-          <div className="mt-auto flex flex-col items-center justify-center gap-1.5 pt-8"><Car aria-hidden="true" className="h-5 w-5 text-primary/60" /><p className="text-sm text-muted-foreground">{c.footTip}</p></div>
+          <div className="mt-auto" />
           <div className="pt-6"><Primary onClick={() => { setDocIndex(0); go('example'); }}>{c.addressDone}</Primary></div>
         </>}
         {step === 'example' && <>
