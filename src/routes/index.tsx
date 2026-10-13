@@ -125,7 +125,7 @@ function Guide() {
         {step === 'start' && <div className="flex flex-1 flex-col justify-center pb-14 pt-0">
           <div className="mx-auto mb-5 inline-flex w-fit items-center gap-2 rounded-full bg-secondary px-4 py-2 text-sm font-bold tracking-wider text-secondary-foreground"><span className="h-2.5 w-2.5 rounded-full bg-primary" />VEHICLE REGISTRATION</div>
           <h1 className="text-center text-[2.2rem] font-extrabold leading-tight text-foreground">{c.startTitle}</h1>
-          <div className="my-6 flex justify-center"><img src={flowImage.url} alt="" draggable={false} className="h-auto w-full max-w-[420px] -translate-x-[2.2%]" /></div>
+          <div className="my-6 flex justify-center"><img src={flowImage.url} alt="" draggable={false} className="h-auto w-full max-w-[420px] -translate-x-[6%]" /></div>
           <div className="mt-6"><Primary onClick={() => go('language')}>START</Primary></div>
         </div>}
         {step === 'language' && <>
