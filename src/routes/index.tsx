@@ -1,7 +1,8 @@
 import { createFileRoute } from '@tanstack/react-router';
 import { useEffect, useRef, useState } from 'react';
 import { toast } from 'sonner';
-import { ArrowLeft, CircleCheck, Download, FileText, Image as ImageIcon, ArrowRight, Car, ChevronRight, Coins, ListChecks, Receipt, Route as RouteIcon, RotateCcw, SquareParking, X, ZoomIn, ZoomOut } from 'lucide-react';
+import { ArrowLeft, Download, FileText, Image as ImageIcon, ArrowRight, Car, ChevronRight, Coins, ListChecks, Receipt, Route as RouteIcon, RotateCcw, SquareParking, X, ZoomIn, ZoomOut } from 'lucide-react';
+import ticketGuideImage from '@/assets/todugi_ticket_guide3_transparent.png.asset.json';
 import { Button } from '@/components/ui/button';
 import { documentFields, documentTitle, fieldText, languageNames, downloadText, languages, previewSize, t, type DocumentKey, type Language } from '@/guide-content';
 import transferBothPreview from '@/assets/form_transfer_both.png.asset.json';
@@ -193,7 +194,7 @@ function Guide() {
         {step === 'finish' && <>
           <p className="mb-2 text-xs font-bold uppercase text-primary">{service === 'number' ? '03' : '07'} · FINAL STEP</p><h1 className="mb-5 mt-16 whitespace-pre-line text-center text-[1.7rem] font-extrabold leading-snug sm:text-[1.9rem]">{c.finishLead}</h1>
           <p className="mt-3 text-center text-base text-muted-foreground">{c.finishNote}</p>
-          <div className="my-8 flex flex-col items-center justify-center gap-4"><div className="flex h-24 w-24 items-center justify-center rounded-full bg-primary/10"><CircleCheck aria-hidden="true" className="h-12 w-12 text-primary" /></div><p className="text-center text-base font-semibold text-muted-foreground">{c.finishTip}</p></div>
+          <div className="my-8 flex flex-col items-center justify-center gap-4"><img src={ticketGuideImage.url} alt={c.finishTip} draggable={false} className="h-40 w-auto -translate-x-[5.5%]" /><p className="text-center text-base font-semibold text-muted-foreground">{c.finishTip}</p></div>
           <Button variant="guide" size="guide" onClick={reset} className="w-full justify-center text-center"><span className="flex items-center gap-2"><RotateCcw aria-hidden="true" />{c.restart}</span></Button>
           <div className="flex-1" />
         </>}
