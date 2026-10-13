@@ -9,8 +9,8 @@ import transferSellerPreview from '@/assets/form_transfer_seller.png.asset.json'
 import transferRepresentativePreview from '@/assets/form_transfer_representative.png.asset.json';
 import certificatePreview from '@/assets/form_certificate.png.asset.json';
 import numberPreview from '@/assets/form_number_form.png.asset.json';
-import flowImage from '@/assets/car_registration_flow.png.asset.json';
-import kioskImage from '@/assets/number_kiosk.png.asset.json';
+import flowImage from '@/assets/registration_guide_icon.png.asset.json';
+import kioskImage from '@/assets/form_to_ticket.png.asset.json';
 import transferBothPdf from '@/assets/transfer_both_dl.pdf.asset.json';
 import transferSellerPdf from '@/assets/transfer_seller_dl.pdf.asset.json';
 import transferRepresentativePdf from '@/assets/transfer_rep_dl.pdf.asset.json';
@@ -195,7 +195,7 @@ function Guide() {
         {step === 'finish' && <>
           <p className="mb-2 text-xs font-bold uppercase text-primary">{service === 'number' ? '03' : '07'} · FINAL STEP</p><h1 className="mb-5 mt-16 whitespace-pre-line text-center text-[1.7rem] font-extrabold leading-snug sm:text-[1.9rem]">{c.finishLead}</h1>
           <p className="mt-3 text-center text-base text-muted-foreground">{c.finishNote}</p>
-          <div className="my-8 flex justify-center"><img src={kioskImage.url} alt="" draggable={false} className="h-44 w-auto -translate-x-[12%]" /></div>
+          <div className="my-8 flex justify-center"><img src={kioskImage.url} alt="" draggable={false} className="h-44 w-auto" /></div>
           <Button variant="guide" size="guide" onClick={reset} className="w-full justify-center text-center"><span className="flex items-center gap-2"><RotateCcw aria-hidden="true" />{c.restart}</span></Button>
           <div className="flex-1" />
         </>}
