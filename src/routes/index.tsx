@@ -1,7 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router';
 import { useEffect, useRef, useState } from 'react';
 import { toast } from 'sonner';
-import { ArrowLeft, Download, FileText, Image as ImageIcon, ArrowRight, Car, ChevronRight, Coins, ListChecks, Receipt, Route as RouteIcon, RotateCcw, SquareParking, X, ZoomIn, ZoomOut } from 'lucide-react';
+import { ArrowLeft, Download, FileText, Image as ImageIcon, ArrowRight, Car, ChevronRight, Coins, ListChecks, Receipt, Route as RouteIcon, RotateCcw, Share2, SquareParking, X, ZoomIn, ZoomOut } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { documentFields, documentTitle, fieldText, languageNames, downloadText, languages, previewSize, t, type DocumentKey, type Language } from '@/guide-content';
 import transferBothPreview from '@/assets/form_transfer_both.png.asset.json';
@@ -39,6 +39,8 @@ const docs: Record<DocumentKey, { preview: string; pdf: string; file: string }> 
   certificate: { preview: certificatePreview.url, pdf: certificatePdf.url, file: '자동차양도증명서' },
   numberForm: { preview: numberPreview.url, pdf: numberPdf.url, file: '자동차변경등록신청서' },
 };
+
+const SHARE_URL = 'https://gimhaevehicleguide.lovable.app';
 
 async function saveFile(url: string, name: string, type: string) {
   const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
@@ -98,6 +100,15 @@ function Guide() {
     if (previous) { setHistory(h => h.slice(0, -1)); setStep(previous); window.scrollTo({ top: 0, behavior: 'instant' }); }
   };
   const reset = () => { setStep('start'); setHistory([]); setLanguage('ko'); setService(null); setVisitor(null); setInsurance(null); setKnowsAddress(null); setDocIndex(0); window.scrollTo({ top: 0, behavior: 'instant' }); };
+  const shareLink = async () => {
+    try {
+      if (navigator.share) { await navigator.share({ title: c.app, text: c.shareText, url: SHARE_URL }); return; }
+      await navigator.clipboard.writeText(SHARE_URL); toast(c.shareCopied);
+    } catch (e) {
+      if ((e as Error).name === 'AbortError') return;
+      try { await navigator.clipboard.writeText(SHARE_URL); toast(c.shareCopied); } catch { window.open(SHARE_URL, '_blank'); }
+    }
+  };
   const openZoom = () => { setZoom(1); setOffset({ x: 0, y: 0 }); setZoomed(true); };
   useEffect(() => {
     if (!zoomed) return;
@@ -197,6 +208,7 @@ function Guide() {
           <p className="mt-3 text-center text-base text-muted-foreground">{c.finishNote}</p>
           <div className="my-8 flex justify-center"><img src={kioskImage.url} alt="" draggable={false} className="h-44 w-auto" /></div>
           <Button variant="guide" size="guide" onClick={reset} className="w-full justify-center text-center"><span className="flex items-center gap-2"><RotateCcw aria-hidden="true" />{c.restart}</span></Button>
+          <Button variant="outline" size="guide" onClick={shareLink} className="mt-3 w-full justify-center border-primary/45 bg-card text-primary hover:bg-primary/5 hover:text-primary"><span className="flex items-center gap-2"><Share2 aria-hidden="true" />{c.share}</span></Button>
           <div className="flex-1" />
         </>}
       </main>

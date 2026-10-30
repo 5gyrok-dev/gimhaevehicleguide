@@ -20,6 +20,7 @@ const copy = {
     zoom: '크게 보기', close: '닫기', zoomIn: '확대', zoomOut: '축소', nextDoc: '다음 서류', afterWrite: '작성 완료',
     finishTitle: '다음 단계 안내', finishLead: '신청서를 모두 작성한 후\n번호표를 뽑아주세요', finishNote: '\n',
     restart: '처음부터 다시 시작', back: '이전',
+    share: '이 링크 공유하기', shareText: '김해시 외국인 자동차 등록 안내 — 신청서 작성 방법을 5개 언어로 안내합니다', shareCopied: '링크를 복사했어요',
     transferForm: '이전등록 신청서', certificate: '자동차양도증명서', numberForm: '자동차 변경등록 신청서',
   },
   en: {
@@ -39,6 +40,7 @@ const copy = {
     zoom: 'Enlarge', close: 'Close', zoomIn: 'Zoom in', zoomOut: 'Zoom out', nextDoc: 'Next form', afterWrite: 'Done',
     finishTitle: 'Next steps', finishLead: 'Fill out all forms, then take a number ticket', finishNote: 'Then wait to be called at the counter',
     restart: 'Start again', back: 'Back',
+    share: 'Share this link', shareText: 'Gimhae Vehicle Registration Guide — fill out vehicle forms step by step in 5 languages', shareCopied: 'Link copied',
     transferForm: 'Transfer registration form', certificate: 'Vehicle transfer certificate', numberForm: 'Registration change form',
   },
   zh: {
@@ -58,6 +60,7 @@ const copy = {
     zoom: '放大查看', close: '关闭', zoomIn: '放大', zoomOut: '缩小', nextDoc: '下一份材料', afterWrite: '填写完成',
     finishTitle: '下一步', finishLead: '填完所有申请表后，请领取号码牌', finishNote: '领取号码后到窗口咨询',
     restart: '重新开始', back: '返回',
+    share: '分享此链接', shareText: '金海市外国人汽车登记指南 — 用5种语言逐步指导填写申请表', shareCopied: '链接已复制',
     transferForm: '过户登记申请表', certificate: '汽车转让证明书', numberForm: '汽车变更登记申请表',
   },
   vi: {
@@ -77,6 +80,7 @@ const copy = {
     zoom: 'Xem lớn', close: 'Đóng', zoomIn: 'Phóng to', zoomOut: 'Thu nhỏ', nextDoc: 'Giấy tờ tiếp theo', afterWrite: 'Đã điền xong',
     finishTitle: 'Bước tiếp theo', finishLead: 'Điền xong tất cả đơn rồi lấy số thứ tự', finishNote: 'Sau đó chờ gọi tại quầy',
     restart: 'Bắt đầu lại', back: 'Quay lại',
+    share: 'Chia sẻ liên kết này', shareText: 'Hướng dẫn đăng ký xe cho người nước ngoài tại Gimhae — hướng dẫn điền đơn từng bước bằng 5 ngôn ngữ', shareCopied: 'Đã sao chép liên kết',
     transferForm: 'Đơn đăng ký sang tên', certificate: 'Giấy chuyển nhượng xe', numberForm: 'Đơn thay đổi đăng ký xe',
   },
   uz: {
@@ -96,6 +100,7 @@ const copy = {
     zoom: 'Kattalashtirish', close: 'Yopish', zoomIn: 'Kattalashtirish', zoomOut: 'Kichraytirish', nextDoc: 'Keyingi hujjat', afterWrite: 'To‘ldirdim',
     finishTitle: 'Keyingi qadam', finishLead: 'Arizalarni to‘ldirib, navbat raqamini oling', finishNote: 'So‘ng xizmat oynasida kuting',
     restart: 'Qayta boshlash', back: 'Orqaga',
+    share: 'Ushbu havolani ulashish', shareText: 'Gimhae shahri chet elliklar uchun avtomobil ro‘yxatdan o‘tish qo‘llanmasi — arizalarni 5 tilda bosqichma-bosqich to‘ldirish', shareCopied: 'Havola nusxalandi',
     transferForm: 'Egalikni o‘tkazish arizasi', certificate: 'Avtomobil topshirish guvohnomasi', numberForm: 'Ro‘yxatni o‘zgartirish arizasi',
   },
 } as const;
