@@ -1,26 +1,83 @@
-# Web App Builder
+# 김해시 외국인 자동차 등록 안내 서비스
 
-토더기 이미지파일과 신청서작성예시파일 첨부할게 이걸 토대로 위prd 대로 웹앱만들어줘
+> 김해시에 사는 외국인 주민이 자동차 등록 민원(명의 이전·번호 변경)을 **한 번에 끝낼 수 있도록**, 방문 전에 필요한 서류와 확인할 사항을 **5개 언어**로 미리 알려 주는 안내 웹서비스입니다.
 
-This project was built with [Lovable](https://lovable.dev).
+🔗 **서비스 바로가기:** https://gimhaevehicleguide.lovable.app
 
-**Live app**: https://gimhaevehicleguide.lovable.app
+지원 언어: 한국어 · 영어 · 베트남어 · 중국어 · 우즈베크어
 
-## Build with Lovable
+---
 
-Continue developing this project in the [Lovable editor](https://lovable.dev/projects/63f64e56-07d4-4661-a894-9a29e92a0e2b).
+## 만든 배경
 
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: every change made in Lovable is committed straight to this repository.
-- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
+외국인 주민이 자동차 명의 이전이나 번호 변경을 위해 민원실을 방문했는데, 접수를 하지 못하고 **다시 방문**해야 하는 경우가 자주 있습니다. 서류가 빠졌거나, 신청서를 잘못 썼거나, 접수 전에 해결했어야 할 문제가 남아 있는 경우입니다.
 
-## Development
+특히 **압류, 체납, 벌금(과태료)** 처럼 접수 전에 먼저 해결해야 하는 문제는 창구에서 알게 되는 경우가 많습니다. 그런데 이런 용어는 한국어로도 어렵고, 언어가 통하지 않으면 담당 직원이 설명하기도, 민원인이 이해하기도 쉽지 않습니다.
 
-Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
+이 서비스는 **신청서 서식을 번역해 주는 것이 목적이 아닙니다.** 민원인이 방문하기 전에 스스로 준비 상태를 점검하고, 필요한 조치를 마친 뒤 접수하도록 돕기 위해 만들었습니다.
 
-```sh
-git clone <this-repository-url>
-cd <repository-name>
-npm i
+- 압류가 있다면 → **압류를 먼저 해제**하고
+- 체납이나 벌금이 있다면 → **먼저 납부**한 뒤에
+- 서류를 준비해서 → **한 번에 접수**
+
+이렇게 하면 민원인은 불필요한 재방문과 신청서 재작성을 줄일 수 있고, 직원은 어려운 용어를 설명하느라 겪던 소통의 부담을 덜 수 있습니다.
+
+## 주요 기능
+
+- **방문 상황에 맞는 필요 서류 안내** — 내가 어떤 일로 방문하는지에 따라 준비할 서류를 알려 줍니다.
+- **접수 전 사전 확인 안내** — 보험 가입 여부, 압류·체납 여부 등 접수 전에 확인해야 할 사항을 쉬운 말로 안내합니다.
+- **신청서 작성 안내** — 자동차 명의 이전·번호 변경 신청서를 어떻게 작성하는지 알려 줍니다.
+- **5개 언어 지원** — 한국어, 영어, 베트남어, 중국어, 우즈베크어. 버튼과 안내 문구도 선택한 언어로 바뀝니다.
+- **링크 공유하기** — 마지막 화면의 `이 링크 공유하기` 버튼을 누르면 휴대폰 공유 창이 열려 카카오톡·문자 등으로 바로 보낼 수 있습니다. 공유 창을 지원하지 않는 기기(예: 컴퓨터)에서는 링크가 자동으로 복사되고 "링크를 복사했어요" 안내가 나타납니다.
+- **처음부터 다시 시작** 버튼으로 언제든 처음 화면으로 돌아갈 수 있습니다.
+
+## 사용 방법
+
+1. 위의 **서비스 바로가기** 주소를 휴대폰이나 컴퓨터 브라우저에서 엽니다.
+2. **START** 버튼을 누릅니다.
+3. 방문 상황에 맞는 안내를 따라가며 **필요한 서류**와 **미리 확인할 사항**을 점검합니다.
+4. 압류나 체납 등 먼저 해결할 일이 있다면 해결한 뒤 방문합니다.
+5. 같은 도움이 필요한 친구나 가족에게는 **이 링크 공유하기** 버튼으로 서비스를 알려 주세요.
+
+## 만든 방법
+
+현장에서 겪은 불편을 바탕으로 담당 공무원이 직접 기획했습니다. 개발 지식 없이 **[Lovable](https://lovable.dev)** 에서 AI와 대화하며 만들었고, 코드는 Lovable이 자동으로 생성했습니다.
+
+Lovable은 보통 아래 기술로 웹사이트를 만듭니다. (정확한 구성은 프로젝트 안의 `package.json` 파일에서 확인할 수 있습니다.)
+
+- React
+- TypeScript
+- Tailwind CSS
+
+<details>
+<summary><b>내 컴퓨터에서 직접 실행해 보기 (개발자용, 선택)</b></summary>
+
+<br>
+
+서비스를 이용하는 데에는 필요하지 않습니다. 먼저 [Node.js](https://nodejs.org)를 설치한 다음, 터미널에서 아래 순서로 입력합니다.
+
+```bash
+# 1. 이 저장소를 내려받기
+git clone https://github.com/5gyrok-dev/gimhaevehicleguide.git
+
+# 2. 폴더 안으로 이동
+cd gimhaevehicleguide
+
+# 3. 필요한 프로그램 설치
+npm install
+
+# 4. 개발용 서버 실행
 npm run dev
 ```
+
+실행 후 터미널에 나오는 주소(보통 `http://localhost:` 로 시작)를 브라우저에서 열면 됩니다.
+
+</details>
+
+## 알려드립니다
+
+이 서비스는 민원 접수를 돕는 **참고용 안내**입니다. 법령이나 업무 절차가 바뀌면 내용이 달라질 수 있으니, 방문 전에 필요한 서류와 절차를 김해시 차량등록사업소에 한 번 더 확인해 주세요.
+
+## 만든 사람
+
+김해시 차량등록사업소 정여옥
